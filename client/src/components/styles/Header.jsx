@@ -12,6 +12,22 @@ export const Header = styled.header`
 export const Title = styled.h1`
   font-size: 7rem;
   margin-bottom: 30px;
+
+@media screen and (max-width: 768px) {
+  font-size: 5rem;
+}
+
+@media screen and (max-width: 425px) {
+  font-size: 4.5rem;
+}
+
+@media screen and (max-width: 375px) {
+  font-size: 4rem;
+}
+
+@media screen and (max-width: 320px) {
+  font-size: 3.5rem;
+}
 `;
 
 export const ButtonCV = styled.a`
