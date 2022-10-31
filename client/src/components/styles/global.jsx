@@ -17,6 +17,20 @@ body{
     font-family: 'Lato', Arial, Helvetica, sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #1f1d2a;
 }
 
+::-webkit-scrollbar-track {
+    border: #3e3a6d solid 2px;
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3e3a6d;
+    border-radius: 50px;
+}
+}
 `;

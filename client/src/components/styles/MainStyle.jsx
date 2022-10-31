@@ -16,6 +16,20 @@ export const Formations = styled.div`
   display: flex;
   justify-content: space-between;
   overflow-x: auto;
+
+  ::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    border: #3e3a6d solid 2px;
+    border-radius: 50px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #3e3a6d;
+    border-radius: 50px;
+  }
 `;
 
 export const FormationAdditional = styled.div`
@@ -39,6 +53,7 @@ export const FormationAdditional = styled.div`
   }
   p {
     font-size: 0.8rem;
+    font-weight: 400;
     color: #808080;
     margin: 2px 0;
   }
@@ -73,30 +88,57 @@ export const ContainerProjects = styled.div`
 export const Projects = styled.div``;
 
 export const Project = styled.div`
+  max-width: 1100px;
   display: grid;
   grid-template: auto auto / 1fr 1fr;
   border: #e1ac04 solid 2px;
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: 40px;
+  padding: 15px;
   gap: 10px;
+  margin: 0 auto;
   margin-bottom: 20px;
+  cursor: pointer;
+
+  &:hover {
+    padding: 10px;
+    transition: 0.3s;
+    box-shadow: -10px 10px 0 #3e3a6d;
+  }
 
   @media screen and (max-width: 768px) {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    padding: 10px;
+
+    &:hover {
+      padding: 0;
+    }
   }
 `;
 
 export const ImageProject = styled.div`
+  max-width: 500px;
   width: 100%;
   grid-column-start: 1;
   grid-column-end: 1;
   grid-row-start: 1;
   grid-row-end: 1;
 
+  @media screen and (max-width: 768px) {
+    max-width: 100%;
+  }
+
   img {
     width: 100%;
-    border-radius: 10px;
+    border-top-left-radius: 30px;
+    border: #e1ac04 solid 2px;
+
+    @media screen and (max-width: 768px) {
+      border-top-left-radius: 38px;
+      border-top-right-radius: 38px;
+      border: 0;
+    }
   }
 `;
 
@@ -117,6 +159,16 @@ export const ProjectData = styled.div`
     margin: 10px 0;
     margin-bottom: 20px;
   }
+
+  @media screen and (max-width: 768px) {
+    h1,
+    p {
+      margin: 0 10px;
+    }
+    p {
+      margin: 20px;
+    }
+  }
 `;
 
 export const ButtonProject = styled.a`
@@ -129,14 +181,23 @@ export const ButtonProject = styled.a`
   text-transform: uppercase;
   text-align: center;
   font-weight: 600;
-  color: #e1ac04;
-  border: #e1ac04 solid 2px;
-  border-radius: 10px;
+  color: #000;
+  background-color: #e1ac04;
+  border: transparent solid 2px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
   padding: 10px;
 
-  &:hover {
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    border: transparent;
     color: #000;
-    border: transparent solid 2px;
     background-color: #e1ac04;
+  }
+
+  &:hover {
+    color: #e1ac04;
+    border: #e1ac04 solid 2px;
+    background-color: transparent;
   }
 `;
