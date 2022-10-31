@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Header = styled.header`
+export const HeaderStyle = styled.header`
   color: #fff;
   font-weight: 600;
   background: url("https://mikaelisson.github.io/portfolio/public/assets/images/montanha.jpg");
@@ -9,7 +9,7 @@ export const Header = styled.header`
   padding: 40px;
 `;
 
-export const Title = styled.h1`
+export const TitleBanner = styled.h1`
   font-size: 7rem;
   margin-bottom: 30px;
 
