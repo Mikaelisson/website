@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FooterStyle = styled.div`
+export const CreditsStyle = styled.div`
   width: 100%;
   height: 100px;
   display: flex;
@@ -9,7 +9,7 @@ export const FooterStyle = styled.div`
   background-color: #21202b;
 `;
 
-export const TitleFooter = styled.h1`
+export const TitleCredits = styled.h1`
   font-size: 0.7rem;
   color: #808080;
 `;

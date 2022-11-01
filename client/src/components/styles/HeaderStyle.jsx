@@ -9,6 +9,8 @@ export const HeaderStyle = styled.header`
   padding: 40px;
 `;
 
+
+
 export const TitleBanner = styled.h1`
   font-size: 7rem;
   margin-bottom: 30px;
@@ -39,7 +41,7 @@ export const ButtonCV = styled.a`
   padding: 10px;
 
   &:hover {
-    transition: .3s;
+    transition: 0.3s;
     color: #000;
     background-color: #e1ac04;
     border-radius: 40px;

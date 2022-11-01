@@ -209,7 +209,6 @@ export const SocialMediaStyle = styled.div`
   position: fixed;
   right: -40px;
   top: 200px;
-  z-index: 1000;
   animation: animationSocialMedia 1s forwards linear;
   animation-delay: 3s;
 
