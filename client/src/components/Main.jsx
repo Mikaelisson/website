@@ -8,6 +8,8 @@ import {
   ImageProject,
   ProjectData,
   ButtonProject,
+  SocialMediaStyle,
+  LinkSocialMedia,
 } from "./styles/MainStyle";
 
 const Main = () => {
@@ -114,6 +116,27 @@ const Main = () => {
           })}
         </Projects>
       </ContainerProjects>
+
+      <SocialMediaStyle>
+        <LinkSocialMedia>
+          <img
+            src="https://mikaelisson.github.io/portfolio/public/assets/images/github.png"
+            alt="icone github"
+          />
+        </LinkSocialMedia>
+        <LinkSocialMedia>
+          <img
+            src="https://mikaelisson.github.io/portfolio/public/assets/images/linkedin.png"
+            alt="icone linkedin"
+          />
+        </LinkSocialMedia>
+        <LinkSocialMedia>
+          <img
+            src="https://mikaelisson.github.io/portfolio/public/assets/images/gmail.png"
+            alt="icone gmail"
+          />
+        </LinkSocialMedia>
+      </SocialMediaStyle>
     </div>
   );
 };
