@@ -13,21 +13,21 @@ export const TitleBanner = styled.h1`
   font-size: 7rem;
   margin-bottom: 30px;
 
-@media screen and (max-width: 768px) {
-  font-size: 5rem;
-}
+  @media screen and (max-width: 768px) {
+    font-size: 5rem;
+  }
 
-@media screen and (max-width: 425px) {
-  font-size: 4.5rem;
-}
+  @media screen and (max-width: 425px) {
+    font-size: 4.5rem;
+  }
 
-@media screen and (max-width: 375px) {
-  font-size: 4rem;
-}
+  @media screen and (max-width: 375px) {
+    font-size: 4rem;
+  }
 
-@media screen and (max-width: 320px) {
-  font-size: 3.5rem;
-}
+  @media screen and (max-width: 320px) {
+    font-size: 3.5rem;
+  }
 `;
 
 export const ButtonCV = styled.a`
@@ -37,4 +37,11 @@ export const ButtonCV = styled.a`
   font-weight: 500;
   border: #e1ac04 solid 2px;
   padding: 10px;
+
+  &:hover {
+    transition: .3s;
+    color: #000;
+    background-color: #e1ac04;
+    border-radius: 40px;
+  }
 `;

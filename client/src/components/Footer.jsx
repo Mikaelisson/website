@@ -1,9 +1,15 @@
+import { FooterStyle, TitleFooter } from "./styles/FooterStyle";
+
 const Footer = () => {
-    return(
-        <div>
+  return (
+    <FooterStyle>
+      <TitleFooter>
+        Developed By:
+        <br />
+        &lt;Mikaelisson&gt;
+      </TitleFooter>
+    </FooterStyle>
+  );
+};
 
-        </div>
-    )
-}
-
-export default Footer
+export default Footer;

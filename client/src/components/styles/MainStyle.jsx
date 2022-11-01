@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-export const MainStyle = styled.main`
-  height: 100%;
-`;
-
 export const Title = styled.h1`
   text-align: center;
   color: #fff;

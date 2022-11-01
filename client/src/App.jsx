@@ -7,12 +7,14 @@ import Header from "./components/Header";
 
 const App = () => {
   return (
-    <Container>
-      <GlobalStyled />
-      <Header />
-      <Main />
+    <div>
+      <Container>
+        <GlobalStyled />
+        <Header />
+        <Main />
+      </Container>
       <Footer />
-    </Container>
+    </div>
   );
 };
 
