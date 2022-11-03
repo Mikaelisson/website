@@ -60,14 +60,30 @@ export const SpanMenu = styled.span`
   transition: 0.25s ease-in-out;
 `;
 
+export const ContainerSidebar = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+
+  ${(props) =>
+    props.activeMenu === true &&
+    css`
+      z-index: 1;
+    `}
+`;
+
 export const Sidebar = styled.div`
   max-width: 425px;
   width: 95%;
   height: 100%;
   background-color: #1e1d29;
   border-right: #212030 solid 1px;
-  position: fixed;
-  top: 0;
+  position: absolute;
+
   left: -100%;
 
   ${(props) =>
@@ -76,8 +92,7 @@ export const Sidebar = styled.div`
       left: 0;
     `}
 
-  z-index: 1;
-  transition: 0.3s ease-in;
+  transition: .3s ease;
 `;
 
 export const SidebarInformations = styled.div`
@@ -152,6 +167,13 @@ export const ContainerSkills = styled.div`
   border-radius: 3px;
 `;
 
+export const ContainerSkill = styled.div`
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 0 5px;
+  border-radius: 5px;
+`;
+
 export const Skill = styled.div`
   width: 100%;
   display: flex;
@@ -179,7 +201,6 @@ export const SkillLevel = styled.div`
   margin-bottom: 10px;
   animation-name: animationSkill 3s forwards;
   animation-delay: 0.5s;
-  cursor: pointer;
 
   @keyframes animationSkill {
     0% {
