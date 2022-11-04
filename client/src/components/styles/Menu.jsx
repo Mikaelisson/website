@@ -78,7 +78,7 @@ export const ContainerSidebar = styled.div`
 
 export const Sidebar = styled.div`
   max-width: 425px;
-  width: 95%;
+  width: 100%;
   height: 100%;
   background-color: #1e1d29;
   border-right: #212030 solid 1px;

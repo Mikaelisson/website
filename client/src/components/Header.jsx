@@ -56,10 +56,7 @@ const Header = () => {
         <Sidebar activeMenu={activeMenu}>
           <SidebarInformations>
             <Identification>
-              <img
-                src="https://mikaelisson.github.io/portfolio/public/assets/images/mikaelisson-redu.png"
-                alt="Foto Mikaelisson"
-              />
+              <img src="./assets/perfil.png" alt="Foto Mikaelisson" />
               <h1>Mikaelisson Gesuino</h1>
               <p>Front-end Developer</p>
             </Identification>
@@ -93,7 +90,7 @@ const Header = () => {
         href="./assets/MIKAELISSON_DO_NASCIMENTO_GESUINO.pdf"
         target="_blank"
       >
-        VISUALIZAR CURRÍCULO
+        VISUALIZAR CV
       </ButtonCV>
     </HeaderStyle>
   );

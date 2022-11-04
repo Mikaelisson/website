@@ -9,11 +9,11 @@ const App = () => {
   return (
     <div>
       <Container>
-        <GlobalStyled />
         <Header />
         <Main />
       </Container>
       <Credits />
+      <GlobalStyled />
     </div>
   );
 };
