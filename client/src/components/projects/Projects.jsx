@@ -5,8 +5,8 @@ import {
   ProjectData,
   ButtonProject,
   ContainerButtons,
-} from "./styles/ProjectStyled";
-import { Title } from "./styles/MainStyled";
+} from "./ProjectStyled";
+import { Title } from "../styles/MainStyled";
 import { FaGithub } from "react-icons/fa";
 
 const Projects = () => {

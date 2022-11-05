@@ -1,4 +1,4 @@
-import { CreditsStyle, TitleCredits } from "./styles/CreditsStyled";
+import { CreditsStyle, TitleCredits } from "./CreditsStyled";
 
 const Footer = () => {
   return (

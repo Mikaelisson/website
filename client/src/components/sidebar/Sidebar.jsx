@@ -1,4 +1,4 @@
-import Credits from "./Credits";
+import Credits from "../credits/Credits";
 import {
   SidebarStyle,
   SidebarInformations,
@@ -11,7 +11,7 @@ import {
   LevelSkill,
   ContainerSidebar,
   Close,
-} from "./styles/MenuStyled";
+} from "./SidebarStyled";
 
 const Sidebar = (props) => {
   const skills = [

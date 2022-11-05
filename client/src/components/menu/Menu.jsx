@@ -1,4 +1,4 @@
-import { CheckboxMenu, LabelMenu, SpanMenu, MenuStyled } from "./styles/MenuStyled";
+import { CheckboxMenu, LabelMenu, SpanMenu, MenuStyled } from "./MenuStyled";
 
 const Menu = (props) => {
   return (
