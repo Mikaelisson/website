@@ -1,12 +1,12 @@
 import {
   ContainerProjects,
-  Title,
   Project,
   ImageProject,
   ProjectData,
   ButtonProject,
   ContainerButtons,
-} from "./styles/MainStyle";
+} from "./styles/ProjectStyled";
+import { Title } from "./styles/MainStyle";
 import { FaGithub } from "react-icons/fa";
 
 const Projects = () => {
@@ -57,7 +57,11 @@ const Projects = () => {
                 )}
               </ProjectData>
               <ContainerButtons>
-                <ButtonProject href={element.repository} target="_blank">
+                <ButtonProject
+                  widthElement="auto"
+                  href={element.repository}
+                  target="_blank"
+                >
                   <FaGithub />
                 </ButtonProject>
                 <ButtonProject
