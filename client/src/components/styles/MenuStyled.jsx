@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const Menu = styled.div`
+export const MenuStyled = styled.div`
   position: fixed;
   top: 0;
   right: 11px;
@@ -15,19 +15,23 @@ export const CheckboxMenu = styled.input`
   position: absolute;
   opacity: 0;
 
-  &:checked + label span:nth-child(1) {
-    transform: rotate(-45deg);
-    top: 8px;
-  }
+  ${(props) =>
+    props.activeMenu === true &&
+    css`
+      &:checked + label span:nth-child(1) {
+        transform: rotate(-45deg);
+        top: 8px;
+      }
 
-  &:checked + label span:nth-child(2) {
-    opacity: 0;
-  }
+      &:checked + label span:nth-child(2) {
+        opacity: 0;
+      }
 
-  &:checked + label span:nth-child(3) {
-    transform: rotate(45deg);
-    top: 8px;
-  }
+      &:checked + label span:nth-child(3) {
+        transform: rotate(45deg);
+        top: 8px;
+      }
+    `}
 `;
 
 export const LabelMenu = styled.label`
@@ -76,7 +80,7 @@ export const ContainerSidebar = styled.div`
     `}
 `;
 
-export const Sidebar = styled.div`
+export const SidebarStyle = styled.div`
   max-width: 425px;
   width: 100%;
   height: 100%;
@@ -93,6 +97,11 @@ export const Sidebar = styled.div`
     `}
 
   transition: .3s ease;
+`;
+
+export const Close = styled.div`
+  width: auto;
+  height: 100%;
 `;
 
 export const SidebarInformations = styled.div`

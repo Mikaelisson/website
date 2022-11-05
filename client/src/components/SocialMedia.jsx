@@ -1,4 +1,4 @@
-import { SocialMediaStyle, LinkSocialMedia } from "./styles/SocialMedia";
+import { SocialMediaStyle, LinkSocialMedia } from "./styles/SocialMediaStyled";
 
 import { MdEmail } from "react-icons/md";
 import { FaGithub, FaLinkedin } from "react-icons/fa";

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export const HeaderStyle = styled.header`
+export const HeaderStyled = styled.header`
   color: #fff;
   font-weight: 600;
-  background: url("https://mikaelisson.github.io/portfolio/public/assets/images/montanha.jpg");
+  background: url("./assets/images/montanha.jpg");
   background-size: cover;
   background-position: 50% 50%;
   padding: 40px;

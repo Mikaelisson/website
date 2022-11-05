@@ -1,5 +1,5 @@
-import { Title } from "./styles/MainStyle";
-import { FormationsStyle, FormationAdditional } from "./styles/FormationsStyle";
+import { Title } from "./styles/MainStyled";
+import { FormationsStyle, FormationAdditional } from "./styles/FormationsStyled";
 
 const Formations = () => {
   const formation = [

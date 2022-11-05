@@ -6,7 +6,7 @@ import {
   ButtonProject,
   ContainerButtons,
 } from "./styles/ProjectStyled";
-import { Title } from "./styles/MainStyle";
+import { Title } from "./styles/MainStyled";
 import { FaGithub } from "react-icons/fa";
 
 const Projects = () => {
