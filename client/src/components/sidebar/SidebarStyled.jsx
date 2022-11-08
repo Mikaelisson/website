@@ -60,6 +60,12 @@ export const SidebarInformations = styled.div`
     background: #3e3a6d;
     border-radius: 50px;
   }
+
+  @media screen and (max-width: 768px) {
+    ::-webkit-scrollbar {
+      width: 0;
+    }
+  }
 `;
 
 export const Identification = styled.div`
@@ -98,10 +104,10 @@ export const Skills = styled.div`
   padding: 10px;
 
   h1 {
+    color: #fff;
     width: 100%;
     font-size: 1rem;
     text-align: center;
-    color: #1e1d29;
     margin-bottom: 10px;
   }
 `;
@@ -113,10 +119,53 @@ export const ContainerSkills = styled.div`
 `;
 
 export const ContainerSkill = styled.div`
+  display: grid;
+  grid-template: auto auto / 30px auto;
+  column-gap: 5px;
   padding: 5px 10px;
   margin-bottom: 10px;
-  box-shadow: rgba(0, 0, 0, 0.5) 0 0 5px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px;
   border-radius: 5px;
+  cursor: pointer;
+
+  &:hover div svg {
+    transform: rotate(360deg);
+    transition: transform 1s;
+  }
+
+  &:hover div span {
+    animation: levelSkill-animation 2s;
+  }
+
+  @keyframes levelSkill-animation {
+    0% {
+      width: ${(props) => props.width};
+    }
+    50% {
+      width: 0;
+    }
+    100% {
+      width: ${(props) => props.width};
+    }
+  }
+`;
+
+export const ContainerIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+
+  svg {
+    color: #e1ac04;
+    width: 100%;
+    height: 100%;
+    padding: 2px;
+  }
 `;
 
 export const Skill = styled.div`
@@ -125,12 +174,24 @@ export const Skill = styled.div`
   flex-flow: row nowrap;
   justify-content: space-between;
 
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 1;
+
   p {
     color: #808080;
     font-size: 0.8rem;
     margin: 5px 0;
     font-weight: 400;
   }
+
+  p:nth-child(1) {
+    color: #e1ac04;
+    font-weight: 900;
+    letter-spacing: 1px;
+  }
+
   p:nth-child(2) {
     font-weight: 400;
     color: #e1ac04;
@@ -147,6 +208,11 @@ export const SkillLevel = styled.div`
   animation-name: animationSkill 3s forwards;
   animation-delay: 0.5s;
 
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 2;
+
   @keyframes animationSkill {
     0% {
       width: 10%;
@@ -162,7 +228,7 @@ export const LevelSkill = styled.span`
   height: 4px;
   background-color: #e1ac04;
   position: absolute;
-  box-shadow: #e1ac04 0 0 3px;
+  box-shadow: #e1ac04 0 0 2px;
 
   &::after {
     content: "";

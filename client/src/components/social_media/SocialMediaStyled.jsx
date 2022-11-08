@@ -39,5 +39,9 @@ export const LinkSocialMedia = styled.a`
     width: 90%;
     height: 100%;
     color: #e1ac04;
+
+    &:hover {
+      color: #7c5f01;
+    }
   }
 `;

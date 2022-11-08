@@ -19,6 +19,12 @@ export const FormationsStyle = styled.div`
     background: #3e3a6d;
     border-radius: 50px;
   }
+
+  @media screen and (max-width: 768px) {
+    ::-webkit-scrollbar{
+      height: 0;
+    }
+  }
 `;
 
 export const FormationAdditional = styled.div`

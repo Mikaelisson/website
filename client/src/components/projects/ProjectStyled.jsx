@@ -21,17 +21,15 @@ export const Project = styled.div`
   cursor: pointer;
 
   &:hover {
-    padding: 10px;
-    transition: 0.5s;
-    box-shadow: -10px 10px 0 #3e3a6d;
+    transition: 0.3s;
+    box-shadow: -10px 10px 3px #3e3a6d;
   }
 
   @media screen and (max-width: 768px) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
-
+    padding: 1px;
     &:hover {
       padding: 0;
     }
@@ -77,13 +75,13 @@ export const ProjectData = styled.div`
     color: #fff;
     font-size: 1.6rem;
     text-align: center;
-    margin: 10px 0;
+    margin: 10px 5px;
     margin-bottom: 20px;
   }
 
   @media screen and (max-width: 768px) {
-    h1{
-        margin: 0 15px;
+    h1 {
+      margin: 0 15px;
     }
     p {
       margin: 0 10px;
@@ -108,15 +106,19 @@ export const ContainerButtons = styled.div`
 
 export const ButtonProject = styled.a`
   width: ${(props) => props.widthElement};
+  height: 40px;
+
   text-decoration: none;
   text-transform: uppercase;
   text-align: center;
   font-weight: 600;
+
   color: #000;
   background-color: #e1ac04;
+
   border: transparent solid 2px;
   border-radius: 40px;
-  padding: 10px;
+  padding: 8px;
 
   &:hover {
     color: #e1ac04;
@@ -124,9 +126,21 @@ export const ButtonProject = styled.a`
     background-color: transparent;
   }
 
+  div {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
   @media screen and (max-width: 768px) {
     border: transparent;
     color: #000;
     background-color: #e1ac04;
+    padding: 10px;
   }
 `;

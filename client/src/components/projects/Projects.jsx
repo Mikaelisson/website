@@ -8,6 +8,7 @@ import {
 } from "./ProjectStyled";
 import { Title } from "../styles/MainStyled";
 import { FaGithub } from "react-icons/fa";
+import { BiLinkExternal } from "react-icons/bi";
 
 const Projects = () => {
   const projects = [
@@ -69,7 +70,10 @@ const Projects = () => {
                   href={element.link}
                   target="_blank"
                 >
-                  ver mais
+                  <div>
+                    ver mais
+                    <BiLinkExternal />
+                  </div>
                 </ButtonProject>
               </ContainerButtons>
             </Project>
