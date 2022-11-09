@@ -108,7 +108,8 @@ export const Skills = styled.div`
     width: 100%;
     font-size: 1rem;
     text-align: center;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
   }
 `;
 
@@ -119,34 +120,16 @@ export const ContainerSkills = styled.div`
 `;
 
 export const ContainerSkill = styled.div`
-  display: grid;
-  grid-template: auto auto / 30px auto;
-  column-gap: 5px;
+  display: flex;
+  column-gap: 10px;
   padding: 5px 10px;
   margin-bottom: 10px;
   box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px;
   border-radius: 5px;
-  cursor: pointer;
 
   &:hover div svg {
     transform: rotate(360deg);
     transition: transform 1s;
-  }
-
-  &:hover div span {
-    animation: levelSkill-animation 2s;
-  }
-
-  @keyframes levelSkill-animation {
-    0% {
-      width: ${(props) => props.width};
-    }
-    50% {
-      width: 0;
-    }
-    100% {
-      width: ${(props) => props.width};
-    }
   }
 `;
 
@@ -155,15 +138,10 @@ export const ContainerIcon = styled.div`
   align-items: center;
   justify-content: center;
 
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 3;
-
   svg {
     color: #e1ac04;
-    width: 100%;
-    height: 100%;
+    width: 30px;
+    height: 30px;
     padding: 2px;
   }
 `;
@@ -173,73 +151,14 @@ export const Skill = styled.div`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-
-  grid-column-start: 2;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 1;
+  align-items: center;
 
   p {
-    color: #808080;
-    font-size: 0.8rem;
-    margin: 5px 0;
-    font-weight: 400;
-  }
-
-  p:nth-child(1) {
     color: #e1ac04;
+    font-size: 0.8rem;
     font-weight: 900;
     letter-spacing: 1px;
-  }
-
-  p:nth-child(2) {
-    font-weight: 400;
-    color: #e1ac04;
-    text-shadow: #e1ac04 0 0 1px;
-  }
-`;
-
-export const SkillLevel = styled.div`
-  max-width: 100%;
-  height: 4px;
-  background-color: #3e3a6d;
-  position: relative;
-  margin-bottom: 10px;
-  animation-name: animationSkill 3s forwards;
-  animation-delay: 0.5s;
-
-  grid-column-start: 2;
-  grid-column-end: 2;
-  grid-row-start: 2;
-  grid-row-end: 2;
-
-  @keyframes animationSkill {
-    0% {
-      width: 10%;
-    }
-    100% {
-      width: 100%;
-    }
-  }
-`;
-
-export const LevelSkill = styled.span`
-  width: ${(props) => props.width};
-  height: 4px;
-  background-color: #e1ac04;
-  position: absolute;
-  box-shadow: #e1ac04 0 0 2px;
-
-  &::after {
-    content: "";
-    width: 6px;
-    height: 6px;
-    background-color: #e1ac04;
-    border-radius: 50%;
-    filter: blur(1px);
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
+    margin: 5px 0;
+    padding: 0 2px;
   }
 `;

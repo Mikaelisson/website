@@ -7,8 +7,6 @@ import {
   ContainerSkills,
   ContainerSkill,
   Skill,
-  SkillLevel,
-  LevelSkill,
   ContainerSidebar,
   Close,
   ContainerIcon,
@@ -26,18 +24,22 @@ import { IoLogoNodejs } from "react-icons/io";
 
 const Sidebar = (props) => {
   const skills = [
-    { name: "ReactJS", level: "70%", icon: <FaReact /> },
-    { name: "Styled Components", level: "70%", icon: <SiStyledcomponents /> },
-    { name: "Javascript", level: "80%", icon: <DiJavascript1 /> },
-    { name: "Bootstrap", level: "70%", icon: <FaBootstrap /> },
-    { name: "NodeJS", level: "80%", icon: <IoLogoNodejs /> },
-    { name: "ExpressJS", level: "80%", icon: <SiExpress /> },
-    { name: "MongoDB", level: "70%", icon: <SiMongodb /> },
-    { name: "Mongoose", level: "90%", icon: <DiMongodb /> },
-    { name: "Firebase", level: "30%", icon: <SiFirebase /> },
-    { name: "HTML", level: "90%", icon: <DiHtml5 /> },
-    { name: "CSS", level: "90%", icon: <DiCss3Full /> },
-    { name: "Automação com UiPath", level: "60%", icon: <FaRobot /> },
+    { name: "ReactJS", level: "Avançado", icon: <FaReact /> },
+    {
+      name: "Styled Components",
+      level: "Avançado",
+      icon: <SiStyledcomponents />,
+    },
+    { name: "Javascript", level: "Avançado", icon: <DiJavascript1 /> },
+    { name: "HTML", level: "Avançado", icon: <DiHtml5 /> },
+    { name: "CSS", level: "Avançado", icon: <DiCss3Full /> },
+    { name: "Bootstrap", level: "Avançado", icon: <FaBootstrap /> },,
+    { name: "ExpressJS", level: "Avançado", icon: <SiExpress /> },
+    { name: "MongoDB", level: "Avançado", icon: <SiMongodb /> },
+    { name: "Mongoose", level: "Avançado", icon: <DiMongodb /> },
+    { name: "NodeJS", level: "Avançado", icon: <IoLogoNodejs /> },
+    { name: "Firebase", level: "Intermediário", icon: <SiFirebase /> },
+    { name: "Automação com UiPath", level: "Intermediário", icon: <FaRobot /> },
   ];
 
   return (
@@ -50,22 +52,18 @@ const Sidebar = (props) => {
             <p>Front-end Developer</p>
           </Identification>
           <Skills>
-            <h1>Habilidades</h1>
+            <h1>Tecnologias</h1>
 
             <ContainerSkills>
               {skills.map((skill, index) => {
                 return (
-                  <ContainerSkill key={index}  width={skill.level}>
+                  <ContainerSkill key={index} width={skill.level}>
                     <ContainerIcon>{skill.icon}</ContainerIcon>
 
                     <Skill>
                       <p>{skill.name}</p>
                       <p>{skill.level}</p>
                     </Skill>
-
-                    <SkillLevel>
-                      <LevelSkill width={skill.level} />
-                    </SkillLevel>
                   </ContainerSkill>
                 );
               })}

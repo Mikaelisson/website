@@ -22,7 +22,7 @@ export const Project = styled.div`
 
   &:hover {
     transition: 0.3s;
-    box-shadow: -10px 10px 3px #3e3a6d;
+    box-shadow: 0 0 0 10px #3e3a6d;
   }
 
   @media screen and (max-width: 768px) {
@@ -142,5 +142,9 @@ export const ButtonProject = styled.a`
     color: #000;
     background-color: #e1ac04;
     padding: 10px;
+
+    &:hover{
+      padding: 8px;
+    }
   }
 `;
