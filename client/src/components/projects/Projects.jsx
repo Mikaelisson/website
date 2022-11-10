@@ -16,22 +16,22 @@ const Projects = () => {
       name: "Aplicação Meteorológica",
       description:
         "Informando a cidade na qual deseja saber informações, será retornado dados meteorológicos",
-      mobile: true,
+      comments: "",
+      mobileSupport: true,
       image:
         "https://mikaelisson.github.io/portfolio/public/assets/projects_images/weather_app.png",
-      note: "",
-      link: "#",
+      url: "#",
       repository: "https://github.com/Mikaelisson",
     },
     {
       name: "Sistema de Gerenciamento de Usuários",
       description:
         "Sistema de gerenciamento de usuários podendo atribuir permissões aos indivíduos pertencentes à sua conta, sendo recomendável que você atribua a função de Administrador de Sistema da sua conta a mais de um usuário, para o caso do administrador principal não estar disponível",
+      comments: "Para testar utilize usuário ADMINISTRADOR e senha 123456",
+      mobileSupport: true,
       image:
         "https://mikaelisson.github.io/portfolio/public/assets/projects_images/sistema_gerenciamento_usuarios.png",
-      mobile: true,
-      note: "Para testar utilize usuário ADMINISTRADOR e senha 123456",
-      link: "#",
+        url: "#",
       repository: "https://github.com/Mikaelisson",
     },
   ];
@@ -50,11 +50,11 @@ const Projects = () => {
               <ProjectData>
                 {element.name && <h3>{element.name}</h3>}
                 {element.description && <p>{element.description}</p>}
-                {element.note && <p>{element.note}</p>}
-                {element.mobile ? (
-                  <p>Com suporte para Mobile</p>
+                {element.comments && <p>{element.comments}</p>}
+                {element.mobileSupport ? (
+                  <p>Com suporte para mobile</p>
                 ) : (
-                  <p>Sem suporte para Mobile</p>
+                  <p>Sem suporte para mobile</p>
                 )}
               </ProjectData>
               <ContainerButtons>
@@ -67,7 +67,7 @@ const Projects = () => {
                 </ButtonProject>
                 <ButtonProject
                   widthElement="100%"
-                  href={element.link}
+                  href={element.url}
                   target="_blank"
                 >
                   <div>

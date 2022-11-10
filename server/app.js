@@ -1,16 +1,15 @@
 require("dotenv").config();
+require("./database/db");
 const express = require("express");
 const app = express();
 const path = require("path");
-const db = require("./database/db");
+const router = require("./routes/router");
+require("./database/db");
 
 const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, "../client/dist")));
-
-app.use("/", (req, res) => {
-  res.send("Hello World");
-});
+app.use("/", router);
 
 if (process.env.NODE_ENV !== "development") {
   app.use(express.static(path.join(__dirname, "../client/dist/index.html")));
@@ -22,6 +21,4 @@ if (process.env.NODE_ENV !== "development") {
   });
 }
 
-app.listen(PORT, () => {
-  console.log("Server running on port", PORT);
-});
+app.listen(PORT, () => console.log("Server running on port", PORT));
