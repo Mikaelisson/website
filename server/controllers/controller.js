@@ -1,11 +1,11 @@
 const Project = require("../models/Project");
 const { addProjectValidate, editProjectValidate } = require("./validate");
 
-const home = (req, res) => {
+const searchProject = (req, res) => {
   res.send();
 };
 
-const add = async (req, res) => {
+const addProject = async (req, res) => {
   const { error } = addProjectValidate(req.body);
   if (error) res.status(404).send(`Error do JOI ==> ${error.message}`);
 
@@ -20,7 +20,7 @@ const add = async (req, res) => {
   }
 };
 
-const edit = async (req, res) => {
+const editProject = async (req, res) => {
   let id = req.params.id;
 
   const data = req.body;
@@ -52,4 +52,21 @@ const edit = async (req, res) => {
   }
 };
 
-module.exports = { home, add, edit };
+const deleteProject = async (req, res) => {
+  let id = req.params.id;
+
+  try {
+    const project = await Project.findById(id);
+    if (!project) res.status(404).send("Projeto não existe.");
+
+    if (!error) {
+      const doc = await Project.findByIdAndDelete(id);
+      console.log(`Projeto deletado com sucesso ==> ${doc}`);
+      res.send(doc);
+    }
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+module.exports = { searchProject, addProject, editProject, deleteProject };

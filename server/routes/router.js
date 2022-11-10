@@ -4,9 +4,11 @@ const constroller = require("../controllers/controller");
 
 router.use(express.urlencoded({ extended: true }));
 
-router.get("/", constroller.home);
+router.get("/", constroller.searchProject);
 
-router.post("/add", constroller.add);
-router.post("/edit/:id", constroller.edit);
+router.post("/add", constroller.addProject);
+router.post("/edit/:id", constroller.editProject);
+
+router.delete("/:id", constroller.deleteProject);
 
 module.exports = router;
