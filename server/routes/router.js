@@ -4,7 +4,7 @@ const constroller = require("../controllers/controller");
 
 router.use(express.urlencoded({ extended: true }));
 
-router.get("/", constroller.searchProject);
+router.get("/api/search/projects", constroller.searchProject);
 
 router.post("/add", constroller.addProject);
 router.post("/edit/:id", constroller.editProject);

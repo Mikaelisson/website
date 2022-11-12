@@ -1,8 +1,13 @@
 const Project = require("../models/Project");
 const { addProjectValidate, editProjectValidate } = require("./validate");
 
-const searchProject = (req, res) => {
-  res.send();
+const searchProject = async (req, res) => {
+  try {
+    const doc = await Project.find({});
+    res.send(doc);
+  } catch (error) {
+    res.send(error);
+  }
 };
 
 const addProject = async (req, res) => {
@@ -59,11 +64,9 @@ const deleteProject = async (req, res) => {
     const project = await Project.findById(id);
     if (!project) res.status(404).send("Projeto não existe.");
 
-    if (!error) {
-      const doc = await Project.findByIdAndDelete(id);
-      console.log(`Projeto deletado com sucesso ==> ${doc}`);
-      res.send(doc);
-    }
+    const doc = await Project.findByIdAndDelete(id);
+    console.log(`Projeto deletado com sucesso ==> ${doc}`);
+    res.send(doc);
   } catch (error) {
     res.send(error);
   }

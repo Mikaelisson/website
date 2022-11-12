@@ -4,7 +4,7 @@ const addProjectValidate = (data) => {
   const schema = Joi.object({
     name: Joi.string().required(),
     description: Joi.string().required(),
-    comments: Joi.string(),
+    comments: Joi.string().empty(""),
     mobileSupport: Joi.boolean().required(),
     image: Joi.string().required(),
     url: Joi.string().required(),
