@@ -6,7 +6,7 @@ const searchProject = async (req, res) => {
     const doc = await Project.find({});
     res.send(doc);
   } catch (error) {
-    res.send(error);
+    res.status(404).send(error);
   }
 };
 
@@ -53,7 +53,7 @@ const editProject = async (req, res) => {
     await Project.findByIdAndUpdate(id, data);
     res.send("Tudo certo");
   } catch (error) {
-    res.send(error);
+    res.status(404).send(error);
   }
 };
 
@@ -68,7 +68,7 @@ const deleteProject = async (req, res) => {
     console.log(`Projeto deletado com sucesso ==> ${doc}`);
     res.send(doc);
   } catch (error) {
-    res.send(error);
+    res.status(404).send(error);
   }
 };
 

@@ -77,6 +77,8 @@ export const Identification = styled.div`
   align-items: center;
   background-color: #21202b;
 
+  position: relative;
+
   img {
     width: 110px;
     border-radius: 50%;

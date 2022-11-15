@@ -1,4 +1,4 @@
-import Credits from "../credits/Credits";
+
 import {
   SidebarStyle,
   SidebarInformations,
@@ -11,6 +11,8 @@ import {
   Close,
   ContainerIcon,
 } from "./SidebarStyled";
+import Settings from "./settings/Settings";
+import Credits from "../credits/Credits";
 
 import { FaReact, FaBootstrap, FaRobot } from "react-icons/fa";
 import {
@@ -33,7 +35,7 @@ const Sidebar = (props) => {
     { name: "Javascript", level: "Avançado", icon: <DiJavascript1 /> },
     { name: "HTML", level: "Avançado", icon: <DiHtml5 /> },
     { name: "CSS", level: "Avançado", icon: <DiCss3Full /> },
-    { name: "Bootstrap", level: "Avançado", icon: <FaBootstrap /> },,
+    { name: "Bootstrap", level: "Avançado", icon: <FaBootstrap /> },
     { name: "ExpressJS", level: "Avançado", icon: <SiExpress /> },
     { name: "MongoDB", level: "Avançado", icon: <SiMongodb /> },
     { name: "Mongoose", level: "Avançado", icon: <DiMongodb /> },
@@ -47,10 +49,13 @@ const Sidebar = (props) => {
       <SidebarStyle activeMenu={props.activeMenu}>
         <SidebarInformations>
           <Identification>
+            <Settings />
+
             <img src="./assets/images/perfil.png" alt="Foto Mikaelisson" />
             <h1>Mikaelisson Gesuino</h1>
             <p>Front-end Developer</p>
           </Identification>
+
           <Skills>
             <h1>Tecnologias</h1>
 
