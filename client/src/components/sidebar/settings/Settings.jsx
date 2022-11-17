@@ -12,10 +12,10 @@ const Settings = () => {
 
   return (
     <div>
-      <SettingsStyled  onClick={() => showSettings()}>
+      <SettingsStyled onClick={() => showSettings()}>
         <MdSettings />
       </SettingsStyled>
-      {settings ? <Panel /> : null}
+      {settings ? <Panel showSettings={showSettings} /> : null}
     </div>
   );
 };
