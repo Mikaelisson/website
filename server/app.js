@@ -4,12 +4,14 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const router = require("./routes/router");
+const routerAdmin = require("./routes/routerAdmin");
 require("./database/db");
 
 const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, "../client/dist")));
 app.use("/", router);
+app.use("/admin", routerAdmin);
 
 if (process.env.NODE_ENV !== "development") {
   app.use(express.static(path.join(__dirname, "../client/dist/index.html")));

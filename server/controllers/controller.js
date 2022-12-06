@@ -1,5 +1,11 @@
 const Project = require("../models/Project");
-const { addProjectValidate, editProjectValidate } = require("./validate");
+const User = require("../models/User");
+const {
+  addProjectValidate,
+  editProjectValidate,
+  addUserValidate,
+  editUserValidate,
+} = require("./validate");
 
 const searchProject = async (req, res) => {
   try {
@@ -12,7 +18,7 @@ const searchProject = async (req, res) => {
 
 const addProject = async (req, res) => {
   const { error } = addProjectValidate(req.body);
-  if (error) res.status(404).send(`Error do JOI ==> ${error.message}`);
+  if (error) res.status(404).send(`Error JOI ==> ${error.message}`);
 
   const data = new Project(req.body);
 
@@ -72,4 +78,58 @@ const deleteProject = async (req, res) => {
   }
 };
 
-module.exports = { searchProject, addProject, editProject, deleteProject };
+const admin = async (req, res) => {
+  //PRECISA RETORNAR TELA DE LOGIN
+
+  try {
+    res.send("Login");
+  } catch (error) {
+    res.status(404).send(error);
+  }
+};
+
+const addUser = async (req, res) => {
+  const { error } = addUserValidate(req.body);
+  if (error) res.status(404).send(`Error JOI ==> ${error.message}`);
+
+  const data = new User({
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    date: new Date(),
+  });
+
+  try {
+    const doc = await data.save();
+    console.log("Usuário cadastrado com sucesso!");
+    res.send(doc);
+  } catch (error) {
+    res.status(404).send(error);
+  }
+};
+
+const editUser = async (req, res) => {
+  const { error } = editUserValidate(req.body);
+  if (error) res.status(404).send(`Error JOI ==> ${error.message}`);
+
+  let id = req.params.id;
+
+  try {
+    await User.findByIdAndUpdate(id, req.body);
+    const doc = await User.findById(id);
+    console.log("Usuário editado com sucesso!");
+    res.send(doc);
+  } catch (error) {
+    res.status(404).send(error);
+  }
+};
+
+module.exports = {
+  searchProject,
+  admin,
+  addUser,
+  addProject,
+  editProject,
+  deleteProject,
+  editUser,
+};

@@ -13,31 +13,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 const Projects = () => {
-  // const projects = [
-  //   {
-  //     name: "Aplicação Meteorológica",
-  //     description:
-  //       "Informando a cidade na qual deseja saber informações, será retornado dados meteorológicos",
-  //     comments: "",
-  //     mobileSupport: true,
-  //     image:
-  //       "https://mikaelisson.github.io/portfolio/public/assets/projects_images/weather_app.png",
-  //     url: "#",
-  //     repository: "https://github.com/Mikaelisson",
-  //   },
-  //   {
-  //     name: "Sistema de Gerenciamento de Usuários",
-  //     description:
-  //       "Sistema de gerenciamento de usuários podendo atribuir permissões aos indivíduos pertencentes à sua conta, sendo recomendável que você atribua a função de Administrador de Sistema da sua conta a mais de um usuário, para o caso do administrador principal não estar disponível",
-  //     comments: "Para testar utilize usuário ADMINISTRADOR e senha 123456",
-  //     mobileSupport: true,
-  //     image:
-  //       "https://mikaelisson.github.io/portfolio/public/assets/projects_images/sistema_gerenciamento_usuarios.png",
-  //       url: "#",
-  //     repository: "https://github.com/Mikaelisson",
-  //   },
-  // ];
-
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {

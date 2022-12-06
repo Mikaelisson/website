@@ -1,3 +1,4 @@
+const { string } = require("joi");
 const Joi = require("joi");
 
 const addProjectValidate = (data) => {
@@ -28,4 +29,28 @@ const editProjectValidate = (data) => {
   return schema.validate(data);
 };
 
-module.exports = { addProjectValidate, editProjectValidate };
+const addUserValidate = (data) => {
+  const schema = Joi.object({
+    name: Joi.string().required(),
+    email: Joi.string().required(),
+    password: Joi.string().required(),
+  });
+
+  return schema.validate(data);
+};
+
+const editUserValidate = (data) => {
+  const schema = Joi.object({
+    name: Joi.string(),
+    email: Joi.string(),
+  });
+
+  return schema.validate(data);
+};
+
+module.exports = {
+  addProjectValidate,
+  editProjectValidate,
+  addUserValidate,
+  editUserValidate,
+};

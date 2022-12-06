@@ -76,12 +76,11 @@ export const Identification = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #21202b;
-
   position: relative;
 
   img {
     width: 110px;
-    border-radius: 50%;
+    border-radius: 100%;
     border: #3e3a6d solid 2px;
     background-color: #1e1d29;
   }

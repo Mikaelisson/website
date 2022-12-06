@@ -1,4 +1,3 @@
-
 import {
   SidebarStyle,
   SidebarInformations,
@@ -11,7 +10,6 @@ import {
   Close,
   ContainerIcon,
 } from "./SidebarStyled";
-import Settings from "./settings/Settings";
 import Credits from "../credits/Credits";
 
 import { FaReact, FaBootstrap, FaRobot } from "react-icons/fa";
@@ -49,9 +47,8 @@ const Sidebar = (props) => {
       <SidebarStyle activeMenu={props.activeMenu}>
         <SidebarInformations>
           <Identification>
-            <Settings />
-
             <img src="./assets/images/perfil.png" alt="Foto Mikaelisson" />
+
             <h1>Mikaelisson Gesuino</h1>
             <p>Front-end Developer</p>
           </Identification>
