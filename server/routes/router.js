@@ -1,7 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const constroller = require("../controllers/controller");
+const constrollerUser = require("../controllers/controllerUser");
 
-router.get("/api/search/projects", constroller.searchProject);
+router.use(express.urlencoded({ extended: true }));
+
+router.get("/search/projects", constroller.searchProject);
+
+router.post("/login", constrollerUser.loginUser);
 
 module.exports = router;
