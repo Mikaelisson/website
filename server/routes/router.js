@@ -8,5 +8,6 @@ router.use(express.urlencoded({ extended: true }));
 router.get("/search/projects", constroller.searchProject);
 
 router.post("/login", constrollerUser.loginUser);
+router.post("/logout", constrollerUser.logoutUser);
 
 module.exports = router;
