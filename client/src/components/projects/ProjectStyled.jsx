@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const ContainerProjects = styled.div`
   h1 {
@@ -18,7 +18,6 @@ export const Project = styled.div`
   gap: 10px;
   margin: 0 auto;
   margin-bottom: 20px;
-  cursor: pointer;
 
   &:hover {
     transition: 0.3s;
@@ -114,16 +113,36 @@ export const ButtonProject = styled.a`
   font-weight: 600;
 
   color: #000;
-  background-color: #e1ac04;
+  ${(props) =>
+    !props.buttonBgColor &&
+    css`
+      background-color: #e1ac04;
+    `};
+  ${(props) =>
+    props.buttonBgColor &&
+    css`
+      background-color: ${props.buttonBgColor};
+    `};
 
   border: transparent solid 2px;
   border-radius: 40px;
   padding: 8px;
 
   &:hover {
-    color: #e1ac04;
-    border: #e1ac04 solid 2px;
-    background-color: transparent;
+    ${(props) =>
+      !props.buttonBgColor &&
+      css`
+        color: #e1ac04;
+        border: #e1ac04 solid 2px;
+        background-color: transparent;
+      `};
+    ${(props) =>
+      props.buttonBgColor &&
+      css`
+        color: ${props.buttonBgColor};
+        border: ${props.buttonBgColor} solid 2px;
+        background-color: transparent;
+      `};
   }
 
   div {
@@ -140,10 +159,20 @@ export const ButtonProject = styled.a`
   @media screen and (max-width: 768px) {
     border: transparent;
     color: #000;
-    background-color: #e1ac04;
     padding: 10px;
 
-    &:hover{
+    ${(props) =>
+      !props.buttonBgColor &&
+      css`
+        background-color: #e1ac04;
+      `};
+    ${(props) =>
+      props.buttonBgColor &&
+      css`
+        background-color: ${props.buttonBgColor};
+      `};
+
+    &:hover {
       padding: 8px;
     }
   }

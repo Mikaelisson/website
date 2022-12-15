@@ -8,7 +8,16 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 20px;
   color: #e1ac04;
-  background-color: #1f1d2a;
+
+  div {
+    width: 100%;
+    max-width: 400px;
+    background-color: #1f1d2a;
+    border: #e1ac04 solid 2px;
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+  }
 
   h1 {
     font-size: 3.5rem;
@@ -16,5 +25,6 @@ export const Container = styled.div`
 
   p {
     font-size: 1.4rem;
+    margin: 15px 0;
   }
 `;

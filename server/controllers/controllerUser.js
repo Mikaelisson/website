@@ -31,7 +31,8 @@ const loginUser = async (req, res) => {
 
     req.session = { name: doc.name, email: doc.email };
 
-    res.send(`Bem vindo ${req.session.name}!`);
+    console.log(`Bem vindo ${req.session.name}!`);
+    res.redirect("/admin/dashboard");
   } catch (error) {
     res.status(404).send(error);
   }

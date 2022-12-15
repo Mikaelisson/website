@@ -19,7 +19,7 @@ body{
     -webkit-font-smoothing: antialiased;
     
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 6px;
     background-color: #1f1d2a;
 }
 

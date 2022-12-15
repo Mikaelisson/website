@@ -14,7 +14,7 @@ app.use("/api", router);
 app.use("/admin", routerAdmin);
 
 const sess = {
-  secret: "keyboard cat",
+  secret: "sqbsyv2yb323un",
   cookie: {},
 };
 

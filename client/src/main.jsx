@@ -4,6 +4,7 @@ import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./components/error-page/error-page";
 import Admin from "./components/admin/Admin";
+import Dashboard from "./components/dashboard/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -12,8 +13,12 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "admin/dashboard",
+    path: "admin",
     element: <Admin />,
+  },
+  {
+    path: "admin/dashboard",
+    element: <Dashboard />,
   },
 ]);
 

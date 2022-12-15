@@ -12,7 +12,7 @@ import { BiLinkExternal } from "react-icons/bi";
 import { useState } from "react";
 import { useEffect } from "react";
 
-const Projects = () => {
+const Projects = (props) => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -62,6 +62,7 @@ const Projects = () => {
                     <BiLinkExternal />
                   </div>
                 </ButtonProject>
+                {props.children}
               </ContainerButtons>
             </Project>
           );
