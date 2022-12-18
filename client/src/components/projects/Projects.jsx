@@ -3,7 +3,7 @@ import {
   Project,
   ImageProject,
   ProjectData,
-  ButtonProject,
+  LinkProject,
   ContainerButtons,
 } from "./ProjectStyled";
 import { Title } from "../styles/MainStyled";
@@ -45,14 +45,14 @@ const Projects = (props) => {
                 )}
               </ProjectData>
               <ContainerButtons>
-                <ButtonProject
+                <LinkProject
                   widthElement="auto"
                   href={element.repository}
                   target="_blank"
                 >
                   <FaGithub />
-                </ButtonProject>
-                <ButtonProject
+                </LinkProject>
+                <LinkProject
                   widthElement="100%"
                   href={element.url}
                   target="_blank"
@@ -61,7 +61,7 @@ const Projects = (props) => {
                     ver mais
                     <BiLinkExternal />
                   </div>
-                </ButtonProject>
+                </LinkProject>
                 {props.children}
               </ContainerButtons>
             </Project>

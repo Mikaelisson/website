@@ -17,7 +17,7 @@ const Dashboard = () => {
       <DashboardMain>
         <DashboardProjects />
       </DashboardMain>
-      
+
       <Global />
     </>
   );

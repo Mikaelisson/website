@@ -3,38 +3,19 @@ const bcrypt = require("bcryptjs");
 const { addUserValidate, editUserValidate } = require("./validate");
 
 const admin = async (req, res) => {
-  //PRECISA RETORNAR TELA DE LOGIN
-
   try {
-    res.send("Precisa fazer login para acessar");
+    res.send();
   } catch (error) {
     res.status(404).send(error);
   }
 };
 
-const loginUser = async (req, res) => {
-  const userCredential = {
-    email: req.body.email,
-    password: req.body.password,
-  };
-
+const dashboard = (req, res) => {
   try {
-    const doc = await User.findOne({ email: userCredential.email });
-    if (!doc) res.status(404).send("Usuário não existe");
-
-    const validatePassword = bcrypt.compareSync(
-      userCredential.password,
-      doc.password
-    );
-
-    if (!validatePassword) res.status(404).send("Senha inválida");
-
-    req.session = { name: doc.name, email: doc.email };
-
-    console.log(`Bem vindo ${req.session.name}!`);
-    res.redirect("/admin/dashboard");
+    const token = res.get("authorization-token");
+    res.json({ token });
   } catch (error) {
-    res.status(404).send(error);
+    res.status(404).send("Dashboard error => " + error.message);
   }
 };
 
@@ -108,9 +89,9 @@ const deleteUser = async (req, res) => {
 
 module.exports = {
   admin,
+  dashboard,
   addUser,
   editUser,
   deleteUser,
-  loginUser,
   logoutUser,
 };

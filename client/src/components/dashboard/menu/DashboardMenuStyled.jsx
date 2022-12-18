@@ -49,14 +49,16 @@ export const List = styled.nav`
   }
 
   li button {
+    display: flex;
+    gap: 5px;
     width: 95%;
     padding: 10px;
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
-    border: none;
     font-size: 1rem;
     font-weight: 600;
     color: #e1ac04;
+    border: none;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
     border: #e1ac04 solid 2px;
     border-left: none;
     background-color: #1f1d2a;

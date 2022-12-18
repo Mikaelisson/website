@@ -11,6 +11,5 @@ export const DashboardHeader = styled.header`
 `;
 
 export const DashboardMain = styled.main`
-  height: 100%;
   background-color: #1f1d2a;
 `;

@@ -40,7 +40,7 @@ export const BorderEffect = styled.div`
   }
 `;
 
-export const FormLogin = styled.form`
+export const Login = styled.form`
   width: 100%;
   max-width: 400px;
   padding: 15px 20px;

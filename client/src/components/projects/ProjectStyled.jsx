@@ -103,7 +103,7 @@ export const ContainerButtons = styled.div`
   }
 `;
 
-export const ButtonProject = styled.a`
+export const LinkProject = styled.a`
   width: ${(props) => props.widthElement};
   height: 40px;
 

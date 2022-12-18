@@ -8,6 +8,7 @@ import {
 } from "../../sidebar/SidebarStyled";
 import { List, User } from "./DashboardMenuStyled";
 import { IoSettingsSharp } from "react-icons/io5";
+import { AiFillHome, AiFillFileAdd } from "react-icons/ai";
 
 export const DashboardMenu = () => {
   const [activeMenu, setActiveMenu] = useState(false);
@@ -34,10 +35,14 @@ export const DashboardMenu = () => {
                 </p>
                 <ul>
                   <li>
-                    <button>Início</button>
+                    <button>
+                      <AiFillHome /> Início
+                    </button>
                   </li>
                   <li>
-                    <button>Novo Projeto</button>
+                    <button>
+                      <AiFillFileAdd /> Novo Projeto
+                    </button>
                   </li>
                 </ul>
               </List>

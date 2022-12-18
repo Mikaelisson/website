@@ -5,7 +5,7 @@ import {
   BorderEffect,
   ButtonsForm,
   Container,
-  FormLogin,
+  Login,
   InputGroup,
 } from "./AdminStyled";
 
@@ -13,11 +13,16 @@ const Admin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const login = async () => {
+    const token = (await fetch("/admin/auth", { method: "POST" })).json();
+    console.log(token);
+  };
+
   return (
     <Background>
       <Container>
         <BorderEffect>
-          <FormLogin action="/api/login" method="POST">
+          <Login>
             <h1>Entre com sua conta</h1>
 
             <InputGroup email={email}>
@@ -50,9 +55,9 @@ const Admin = () => {
               <button formAction="/" formMethod="get">
                 Cancelar
               </button>
-              <button>Entrar</button>
+              <button type="submit">Entrar</button>
             </ButtonsForm>
-          </FormLogin>
+          </Login>
         </BorderEffect>
         <GlobalStyled />
       </Container>

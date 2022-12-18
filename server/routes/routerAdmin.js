@@ -1,11 +1,16 @@
 const express = require("express");
+const auth = require("../controllers/authController");
 const router = express.Router();
 const constroller = require("../controllers/controller");
 const constrollerUsers = require("../controllers/controllerUser");
+const loginController = require("../controllers/loginController");
 
 router.use(express.urlencoded({ extended: true }));
+router.use(express.json());
 
 router.get("/", constrollerUsers.admin);
+
+router.post("/auth", loginController, auth, constrollerUsers.dashboard);
 
 //routes user
 router.post("/add/user", constrollerUsers.addUser);
