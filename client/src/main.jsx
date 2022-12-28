@@ -1,10 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import ErrorPage from "./components/error-page/error-page";
 import Admin from "./components/admin/Admin";
-import Dashboard from "./components/dashboard/Dashboard";
+import PrivateRoute from "./components/private/privateRoute";
+import ContainerContext from "./components/private/ContainerContext";
 
 const router = createBrowserRouter([
   {
@@ -13,12 +15,21 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "admin",
-    element: <Admin />,
-  },
-  {
-    path: "admin/dashboard",
-    element: <Dashboard />,
+    path: "/",
+    element: <ContainerContext />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "admin",
+        element: <Admin />,
+        children: [
+          {
+            path: "dashboard",
+            element: <PrivateRoute />,
+          },
+        ],
+      },
+    ],
   },
 ]);
 

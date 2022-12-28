@@ -11,6 +11,7 @@ router.use(express.json());
 router.get("/", constrollerUsers.admin);
 
 router.post("/auth", loginController, auth, constrollerUsers.dashboard);
+router.post("/auth/token", constrollerUsers.queryToken);
 
 //routes user
 router.post("/add/user", constrollerUsers.addUser);

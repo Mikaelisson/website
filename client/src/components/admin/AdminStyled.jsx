@@ -40,7 +40,7 @@ export const BorderEffect = styled.div`
   }
 `;
 
-export const Login = styled.form`
+export const FormLogin = styled.form`
   width: 100%;
   max-width: 400px;
   padding: 15px 20px;
@@ -131,6 +131,7 @@ export const ButtonsForm = styled.div`
   button:nth-child(2) {
     color: #000;
     background-color: #e1ac04;
+    border: transparent solid 2px;
 
     &:hover {
       color: #000;

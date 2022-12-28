@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const { addUserValidate, editUserValidate } = require("./validate");
 
 const admin = async (req, res) => {
@@ -10,10 +11,18 @@ const admin = async (req, res) => {
   }
 };
 
-const dashboard = (req, res) => {
+const dashboard = async (req, res) => {
   try {
+    //getting token
     const token = res.get("authorization-token");
-    res.json({ token });
+
+    //search user and save token
+    const user = await User.findOne({ email: req.body.email });
+    await User.findByIdAndUpdate(user.id, { token });
+
+    req.session = { email: user.email, name: user.name, token: user.token };
+
+    res.json(token);
   } catch (error) {
     res.status(404).send("Dashboard error => " + error.message);
   }
@@ -87,6 +96,16 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const queryToken = async (req, res) => {
+  try {
+    const data = await User.findOne({ email: req.body.email }, "token");
+    jwt.verify(data.token, process.env.TOKEN_SECRET);
+    res.json(data);
+  } catch (error) {
+    res.status(404).send(error);
+  }
+};
+
 module.exports = {
   admin,
   dashboard,
@@ -94,4 +113,5 @@ module.exports = {
   editUser,
   deleteUser,
   logoutUser,
+  queryToken,
 };

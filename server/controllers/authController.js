@@ -5,8 +5,8 @@ module.exports = (req, res, next) => {
   if (!token) res.status(401).send("Acesso negado!");
 
   try {
-    const userVerify = jwt.verify(token, process.env.TOKEN_SECRET);
-    req.user = userVerify;
+    //verify token
+    jwt.verify(token, process.env.TOKEN_SECRET);
     next();
   } catch (error) {
     console.log("auth ==>" + error.message);

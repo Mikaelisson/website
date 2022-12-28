@@ -1,28 +1,47 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { RouteContext } from "../private/contextRoute";
 import { Background } from "../styles/Background";
 import GlobalStyled from "../styles/global";
 import {
   BorderEffect,
   ButtonsForm,
   Container,
-  Login,
+  FormLogin,
   InputGroup,
 } from "./AdminStyled";
 
 const Admin = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail, password, setPassword, token, setToken] =
+    useContext(RouteContext);
 
-  const login = async () => {
-    const token = (await fetch("/admin/auth", { method: "POST" })).json();
-    console.log(token);
+  const login = () => {
+    //login
+    fetch("/admin/auth", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    }).then((res) => {
+      if (res.status === 400) alert("Usuário ou senha inválidos.");
+      if (res.status === 200) {
+        res.text().then((res) => {
+          localStorage.setItem("token", JSON.stringify({ token: res, email }));
+          setToken(res);
+        });
+      }
+    });
   };
 
   return (
     <Background>
       <Container>
         <BorderEffect>
-          <Login>
+          <FormLogin
+            id="formLogin"
+            // method="POST"
+            // action="/admin/auth"
+          >
             <h1>Entre com sua conta</h1>
 
             <InputGroup email={email}>
@@ -55,9 +74,16 @@ const Admin = () => {
               <button formAction="/" formMethod="get">
                 Cancelar
               </button>
-              <button type="submit">Entrar</button>
+              <button
+                onClick={(event) => {
+                  event.preventDefault();
+                  login();
+                }}
+              >
+                Entrar
+              </button>
             </ButtonsForm>
-          </Login>
+          </FormLogin>
         </BorderEffect>
         <GlobalStyled />
       </Container>
