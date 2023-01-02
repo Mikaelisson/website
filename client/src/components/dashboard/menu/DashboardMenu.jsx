@@ -10,7 +10,7 @@ import { List, User } from "./DashboardMenuStyled";
 import { IoSettingsSharp } from "react-icons/io5";
 import { AiFillHome, AiFillFileAdd } from "react-icons/ai";
 
-export const DashboardMenu = () => {
+export const DashboardMenu = (props) => {
   const [activeMenu, setActiveMenu] = useState(false);
 
   const changeMenu = () => {
@@ -26,7 +26,7 @@ export const DashboardMenu = () => {
           <SidebarInformations>
             <div>
               <User>
-                <p>Seja bem vindo, Mikaelisson!</p>
+                <p>Seja bem vindo, {props.name}!</p>
               </User>
               <List>
                 <p>

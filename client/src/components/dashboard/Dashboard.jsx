@@ -4,13 +4,13 @@ import { DashboardHeader, DashboardMain } from "./DashboardStyled";
 import { DashboardMenu } from "./menu/DashboardMenu";
 import DashboardProjects from "./projects/DashboardProjects";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   return (
     <>
       <Background>
         <DashboardHeader>
           <h1>Dashboard</h1>
-          <DashboardMenu />
+          <DashboardMenu name={props.name} />
         </DashboardHeader>
       </Background>
 

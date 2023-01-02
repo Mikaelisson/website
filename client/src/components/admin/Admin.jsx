@@ -37,11 +37,7 @@ const Admin = () => {
     <Background>
       <Container>
         <BorderEffect>
-          <FormLogin
-            id="formLogin"
-            // method="POST"
-            // action="/admin/auth"
-          >
+          <FormLogin id="formLogin">
             <h1>Entre com sua conta</h1>
 
             <InputGroup email={email}>
@@ -71,7 +67,7 @@ const Admin = () => {
             </InputGroup>
 
             <ButtonsForm>
-              <button formAction="/" formMethod="get">
+              <button formAction="/" formMethod="GET">
                 Cancelar
               </button>
               <button

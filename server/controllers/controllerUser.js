@@ -20,8 +20,6 @@ const dashboard = async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
     await User.findByIdAndUpdate(user.id, { token });
 
-    req.session = { email: user.email, name: user.name, token: user.token };
-
     res.json(token);
   } catch (error) {
     res.status(404).send("Dashboard error => " + error.message);
@@ -98,9 +96,13 @@ const deleteUser = async (req, res) => {
 
 const queryToken = async (req, res) => {
   try {
-    const data = await User.findOne({ email: req.body.email }, "token");
+    const data = await User.findOne({ email: req.body.email }, "-password");
     jwt.verify(data.token, process.env.TOKEN_SECRET);
-    res.json(data);
+    const doc = {
+      token: data.token,
+      name: data.name,
+    };
+    res.json(doc);
   } catch (error) {
     res.status(404).send(error);
   }

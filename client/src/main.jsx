@@ -5,7 +5,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
 import ErrorPage from "./components/error-page/error-page";
 import Admin from "./components/admin/Admin";
-import PrivateRoute from "./components/private/privateRoute";
+import PrivateRoute from "./components/private/PrivateRoute";
 import ContainerContext from "./components/private/ContainerContext";
 
 const router = createBrowserRouter([
@@ -15,21 +15,9 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/",
+    path: "admin",
     element: <ContainerContext />,
     errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "admin",
-        element: <Admin />,
-        children: [
-          {
-            path: "dashboard",
-            element: <PrivateRoute />,
-          },
-        ],
-      },
-    ],
   },
 ]);
 

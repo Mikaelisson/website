@@ -20,7 +20,7 @@ module.exports = async (req, res, next) => {
 
     //token creation
     const token = jwt.sign({ _id: doc.id }, process.env.TOKEN_SECRET, {
-      expiresIn: 15 //60 * 30,
+      expiresIn: 60 * 30,
     });
 
     //add token in header

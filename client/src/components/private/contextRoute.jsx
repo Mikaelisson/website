@@ -7,6 +7,7 @@ export const RouteProvider = (props) => {
   const [authorization, setAuthorization] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
   return (
     <RouteContext.Provider
@@ -19,6 +20,8 @@ export const RouteProvider = (props) => {
         setToken,
         authorization,
         setAuthorization,
+        name,
+        setName,
       ]}
     >
       {props.children}
