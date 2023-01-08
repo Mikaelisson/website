@@ -7,11 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": "http://localhost:3000",
-      "/admin/auth": "http://localhost:3000",
-      "/admin/auth/token": "http://localhost:3000",
-      "/admin/add": "http://localhost:3000",
-      "/admin/edit": "http://localhost:3000",
-      "/admin/delete": "http://localhost:3000",
+      "/admin": "http://localhost:3000",
     },
   },
 });

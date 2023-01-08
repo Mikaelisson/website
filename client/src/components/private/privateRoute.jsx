@@ -48,13 +48,12 @@ const PrivateRoute = () => {
       .then((res) => {
         const tokenDB = `"${res.token}"`;
         matchToken(tokenDB);
-        if (name) setName(res.name);
+        if (res.name) setName(res.name);
       });
   }, [token]);
 
   useEffect(() => {
-    const data = getToken();
-    localStorage.setItem("token", JSON.stringify({ ...data, name }));
+    saveName();
   }, [name]);
 
   //compare token saved
@@ -68,6 +67,12 @@ const PrivateRoute = () => {
   //get local storage token
   const getToken = () => {
     return JSON.parse(localStorage.getItem("token"));
+  };
+
+  //save name local storage
+  const saveName = () => {
+    const data = getToken();
+    if (name) localStorage.setItem("token", JSON.stringify({ ...data, name }));
   };
 
   //set token in local storage

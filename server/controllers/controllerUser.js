@@ -3,14 +3,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { addUserValidate, editUserValidate } = require("./validate");
 
-const admin = async (req, res) => {
-  try {
-    res.send();
-  } catch (error) {
-    res.status(404).send(error);
-  }
-};
-
 const dashboard = async (req, res) => {
   try {
     //getting token
@@ -94,7 +86,7 @@ const deleteUser = async (req, res) => {
   }
 };
 
-const queryToken = async (req, res) => {
+const validateToken = async (req, res) => {
   try {
     const data = await User.findOne({ email: req.body.email }, "-password");
     jwt.verify(data.token, process.env.TOKEN_SECRET);
@@ -109,11 +101,10 @@ const queryToken = async (req, res) => {
 };
 
 module.exports = {
-  admin,
   dashboard,
   addUser,
   editUser,
   deleteUser,
   logoutUser,
-  queryToken,
+  validateToken,
 };

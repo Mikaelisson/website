@@ -8,10 +8,9 @@ const loginController = require("../controllers/loginController");
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
 
-router.get("/", constrollerUsers.admin);
-
+//routes auth
 router.post("/auth", loginController, auth, constrollerUsers.dashboard);
-router.post("/auth/token", constrollerUsers.queryToken);
+router.post("/auth/token", constrollerUsers.validateToken);
 
 //routes user
 router.post("/add/user", constrollerUsers.addUser);
