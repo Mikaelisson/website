@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { DashboardContainer } from "./DashboardProjectsStyled";
+
 import {
   Project,
   ImageProject,
@@ -8,6 +9,7 @@ import {
   ContainerButtons,
 } from "../../projects/ProjectStyled";
 import { Title } from "../../styles/MainStyled";
+
 import { IoCloseSharp } from "react-icons/io5";
 import { AiFillEdit } from "react-icons/ai";
 import { FaGithub } from "react-icons/fa";

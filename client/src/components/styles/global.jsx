@@ -17,6 +17,7 @@ body{
     font-family: 'Lato', Arial, Helvetica, sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+
     
 ::-webkit-scrollbar {
     width: 6px;

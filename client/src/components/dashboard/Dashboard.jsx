@@ -1,8 +1,9 @@
+import DashboardMenu from "./menu/DashboardMenu";
+import DashboardProjects from "./projects/DashboardProjects";
+
 import { Background } from "../styles/Background";
 import Global from "../styles/global";
 import { DashboardHeader, DashboardMain } from "./DashboardStyled";
-import { DashboardMenu } from "./menu/DashboardMenu";
-import DashboardProjects from "./projects/DashboardProjects";
 
 const Dashboard = (props) => {
   return (
@@ -10,7 +11,10 @@ const Dashboard = (props) => {
       <Background>
         <DashboardHeader>
           <h1>Dashboard</h1>
-          <DashboardMenu name={props.name} />
+          <DashboardMenu
+            withoutPermission={props.withoutPermission}
+            name={props.name}
+          />
         </DashboardHeader>
       </Background>
 

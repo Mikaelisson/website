@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Menu from "./menu/Menu";
 import Sidebar from "./sidebar/Sidebar";
+
 import { HeaderStyled, TitleBanner, ButtonCV } from "./styles/HeaderStyled";
 
 const Header = () => {

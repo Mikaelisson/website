@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import {
   ContainerProjects,
   Project,
@@ -7,10 +9,9 @@ import {
   ContainerButtons,
 } from "./ProjectStyled";
 import { Title } from "../styles/MainStyled";
+
 import { FaGithub } from "react-icons/fa";
 import { BiLinkExternal } from "react-icons/bi";
-import { useState } from "react";
-import { useEffect } from "react";
 
 const Projects = (props) => {
   const [projects, setProjects] = useState([]);

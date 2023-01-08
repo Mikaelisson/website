@@ -1,4 +1,5 @@
 import { useRouteError } from "react-router-dom";
+
 import { Background } from "../styles/Background";
 import GlobalStyled from "../styles/global";
 import { Container } from "./errorStyled";

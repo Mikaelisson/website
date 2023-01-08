@@ -1,6 +1,7 @@
 import { useEffect, useContext } from "react";
 import Dashboard from "../dashboard/Dashboard";
 import { RouteContext } from "./contextRoute";
+
 import { ContainerRoute } from "./PrivateRouteStyled";
 
 const PrivateRoute = () => {
@@ -64,6 +65,11 @@ const PrivateRoute = () => {
     }
   };
 
+  //without permission
+  const withoutPermission = () => {
+    setAuthorization(false);
+  };
+
   //get local storage token
   const getToken = () => {
     return JSON.parse(localStorage.getItem("token"));
@@ -92,7 +98,11 @@ const PrivateRoute = () => {
   return (
     <ContainerRoute>
       {authorization ? (
-        <Dashboard authorization={authorization} name={name} />
+        <Dashboard
+          authorization={authorization}
+          withoutPermission={withoutPermission}
+          name={name}
+        />
       ) : null}
     </ContainerRoute>
   );

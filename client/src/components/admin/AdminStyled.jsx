@@ -80,6 +80,27 @@ export const InputGroup = styled.div`
     }
   }
 
+  button {
+    border: none;
+    background: none;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+
+    svg {
+      width: 25px;
+      height: 20px;
+      color: #e1ac04;
+
+      &:hover {
+        padding: 1px;
+        transition: padding 0.3s;
+      }
+    }
+  }
+
   label {
     font-size: 1rem;
     font-weight: 600;

@@ -10,6 +10,41 @@ export const User = styled.div`
     font-weight: 700;
     color: #e1ac04;
   }
+
+  button {
+    width: 28px;
+    overflow: hidden;
+
+    font-weight: 600;
+
+    padding: 5px;
+    margin-top: 10px;
+
+    display: flex;
+    align-items: center;
+    gap: 2px;
+
+    color: #e1ac04;
+    background: none;
+    border: 1px solid #e1ac04;
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    svg {
+      width: 15px;
+      height: 15px;
+      margin-right: 3px;
+      overflow: visible;
+    }
+
+    &:hover {
+      width: 77px;
+      color: #1f1d2a;
+      background-color: #e1ac04;
+      transition: width 0.5s;
+    }
+  }
 `;
 
 export const List = styled.nav`

@@ -1,6 +1,7 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import { RouteContext } from "../private/contextRoute";
-import { Background } from "../styles/Background";
+
 import GlobalStyled from "../styles/global";
 import {
   BorderEffect,
@@ -9,8 +10,12 @@ import {
   FormLogin,
   InputGroup,
 } from "./AdminStyled";
+import { Background } from "../styles/Background";
+
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const Admin = () => {
+  const [seePassword, setSeePassword] = useState(false);
   const [email, setEmail, password, setPassword, token, setToken] =
     useContext(RouteContext);
 
@@ -55,7 +60,7 @@ const Admin = () => {
 
             <InputGroup password={password}>
               <input
-                type="text"
+                type={seePassword ? "text" : "password"}
                 name="password"
                 onChange={(e) => {
                   setPassword(e.target.value);
@@ -63,13 +68,25 @@ const Admin = () => {
                 value={password}
                 required
               />
+              <button
+                onClick={(event) => {
+                  event.preventDefault();
+                  setSeePassword(!seePassword);
+                }}
+              >
+                {seePassword ? (
+                  <AiOutlineEyeInvisible title="Esconder senha" />
+                ) : (
+                  <AiOutlineEye title="Mostrar senha" />
+                )}
+              </button>
               <label htmlFor="password">Senha</label>
             </InputGroup>
 
             <ButtonsForm>
-              <button formAction="/" formMethod="GET">
-                Cancelar
-              </button>
+              <Link to={"/"}>
+                <button>Cancelar</button>
+              </Link>
               <button
                 onClick={(event) => {
                   event.preventDefault();

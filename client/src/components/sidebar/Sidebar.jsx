@@ -1,3 +1,5 @@
+import Credits from "../credits/Credits";
+
 import {
   SidebarStyle,
   SidebarInformations,
@@ -10,7 +12,6 @@ import {
   Close,
   ContainerIcon,
 } from "./SidebarStyled";
-import Credits from "../credits/Credits";
 
 import { FaReact, FaBootstrap, FaRobot } from "react-icons/fa";
 import {

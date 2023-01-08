@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Menu from "../../menu/Menu";
+
 import {
   Close,
   ContainerSidebar,
@@ -7,10 +8,12 @@ import {
   SidebarStyle,
 } from "../../sidebar/SidebarStyled";
 import { List, User } from "./DashboardMenuStyled";
+
 import { IoSettingsSharp } from "react-icons/io5";
 import { AiFillHome, AiFillFileAdd } from "react-icons/ai";
+import { BiLogOutCircle } from "react-icons/bi";
 
-export const DashboardMenu = (props) => {
+const DashboardMenu = (props) => {
   const [activeMenu, setActiveMenu] = useState(false);
 
   const changeMenu = () => {
@@ -27,6 +30,15 @@ export const DashboardMenu = (props) => {
             <div>
               <User>
                 <p>Seja bem vindo, {props.name}!</p>
+                <button
+                  onClick={() => {
+                    localStorage.setItem("token", JSON.stringify({}));
+                    props.withoutPermission();
+                  }}
+                >
+                  <BiLogOutCircle />
+                  Logout
+                </button>
               </User>
               <List>
                 <p>
