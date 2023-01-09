@@ -1,11 +1,12 @@
 var admin = require("firebase-admin");
 
-const BUCKET = "image-processing-1b28b.appspot.com";
+const BUCKET = "portfolio-278b8.appspot.com";
+var serviceAccount;
 
 if (process.env.NODE_ENV != "development") {
-  var serviceAccount = require("/etc/secrets/firebase-key.json");
+  serviceAccount = require("/etc/secrets/firebase-key.json");
 } else {
-  var serviceAccount = require("./firebase-key.json");
+  serviceAccount = require("./firebase-key.json");
 }
 
 admin.initializeApp({
@@ -16,6 +17,7 @@ admin.initializeApp({
 const bucket = admin.storage().bucket();
 
 const uploadImage = (req, res, next) => {
+  console.log("Iniciando upload...");
   if (!req.file) return next();
 
   const image = req.file;
@@ -39,7 +41,7 @@ const uploadImage = (req, res, next) => {
 
     req.file.firebaseFileName = fileName;
 
-    req.file.firebaseUrl = `https://storage.googleapis.com/${BUCKET}/images/${fileName}`;
+    req.file.firebaseUrl = `https://firebasestorage.googleapis.com/v0/b/${BUCKET}/o/images%2F${fileName}?alt=media`;
 
     next();
   });

@@ -6,7 +6,6 @@ const addProjectValidate = (data) => {
     description: Joi.string().required(),
     comments: Joi.string().empty(""),
     mobileSupport: Joi.boolean().required(),
-    image: Joi.string().required(),
     url: Joi.string().required(),
     repository: Joi.string().required(),
   });
@@ -20,7 +19,6 @@ const editProjectValidate = (data) => {
     description: Joi.string(),
     comments: Joi.string(),
     mobileSupport: Joi.boolean(),
-    image: Joi.string(),
     url: Joi.string(),
     repository: Joi.string(),
   });

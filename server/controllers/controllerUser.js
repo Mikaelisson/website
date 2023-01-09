@@ -18,17 +18,6 @@ const dashboard = async (req, res) => {
   }
 };
 
-const logoutUser = async (req, res) => {
-  if (req.session) req.session = null;
-  else res.status(404).send("Nenhum usuário conectado");
-
-  try {
-    res.send("Usuário desconectado com sucesso!");
-  } catch (error) {
-    res.status(404).send(error);
-  }
-};
-
 const addUser = async (req, res) => {
   const { error } = addUserValidate(req.body);
   if (error) res.status(404).send(`Error JOI ==> ${error.message}`);
@@ -105,6 +94,5 @@ module.exports = {
   addUser,
   editUser,
   deleteUser,
-  logoutUser,
   validateToken,
 };

@@ -14,7 +14,17 @@ const addProject = async (req, res) => {
   const { error } = addProjectValidate(req.body);
   if (error) res.status(404).send(`Error JOI ==> ${error.message}`);
 
-  const data = new Project(req.body);
+  console.log("controller add project", req.file.firebaseUrl);
+
+  const data = new Project({
+    name: req.body.name,
+    description: req.body.description,
+    comments: req.body.comments,
+    mobileSupport: Boolean(req.body.mobileSupport),
+    image: req.file.firebaseUrl,
+    url: req.body.url,
+    repository: req.body.repository,
+  });
 
   try {
     const doc = await data.save();
