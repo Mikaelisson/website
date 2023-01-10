@@ -1,3 +1,4 @@
+const { deleteImage } = require("../firebase/firebaseConfig");
 const Project = require("../models/Project");
 const { addProjectValidate, editProjectValidate } = require("./validate");
 
@@ -12,12 +13,13 @@ const searchProject = async (req, res) => {
 
 const addProject = async (req, res) => {
   const { error } = addProjectValidate(req.body);
-  if (error) res.status(404).send(`Error JOI ==> ${error.message}`);
-
-  console.log("controller add project", req.file.firebaseUrl);
+  if (error) {
+    res.status(404).send(`Error JOI ==> ${error.message}`);
+    deleteImage(req);
+  }
 
   const data = new Project({
-    name: req.body.name,
+    title: req.body.title,
     description: req.body.description,
     comments: req.body.comments,
     mobileSupport: Boolean(req.body.mobileSupport),
@@ -29,7 +31,7 @@ const addProject = async (req, res) => {
   try {
     const doc = await data.save();
     console.log("Documento adicionado com sucesso!");
-    res.send(doc);
+    res.json(doc);
   } catch (error) {
     res.status(404).send(error);
   }
@@ -47,7 +49,7 @@ const editProject = async (req, res) => {
     const doc = await Project.findById(id);
 
     if (
-      data.name === doc.name ||
+      data.title === doc.title ||
       data.description === doc.description ||
       data.comments === doc.comments ||
       data.mobileSupport === doc.mobileSupport ||

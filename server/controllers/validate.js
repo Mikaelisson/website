@@ -2,7 +2,7 @@ const Joi = require("joi");
 
 const addProjectValidate = (data) => {
   const schema = Joi.object({
-    name: Joi.string().required(),
+    title: Joi.string().required(),
     description: Joi.string().required(),
     comments: Joi.string().empty(""),
     mobileSupport: Joi.boolean().required(),
@@ -15,7 +15,7 @@ const addProjectValidate = (data) => {
 
 const editProjectValidate = (data) => {
   const schema = Joi.object({
-    name: Joi.string(),
+    title: Joi.string(),
     description: Joi.string(),
     comments: Joi.string(),
     mobileSupport: Joi.boolean(),

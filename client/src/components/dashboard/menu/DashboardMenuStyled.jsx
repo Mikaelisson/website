@@ -83,6 +83,10 @@ export const List = styled.nav`
     text-align: left;
   }
 
+  li a {
+    text-decoration: none;
+  }
+
   li button {
     display: flex;
     gap: 5px;

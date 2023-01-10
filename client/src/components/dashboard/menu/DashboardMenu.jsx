@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Menu from "../../menu/Menu";
+import { Link } from "react-router-dom";
 
 import {
   Close,
@@ -47,12 +48,14 @@ const DashboardMenu = (props) => {
                 </p>
                 <ul>
                   <li>
-                    <button>
-                      <AiFillHome /> Início
-                    </button>
+                    <Link to={"/"}>
+                      <button>
+                        <AiFillHome /> Início
+                      </button>
+                    </Link>
                   </li>
                   <li>
-                    <button>
+                    <button onClick={() => props.onSetShowAddProject()}>
                       <AiFillFileAdd /> Novo Projeto
                     </button>
                   </li>

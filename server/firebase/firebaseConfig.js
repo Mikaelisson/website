@@ -17,7 +17,6 @@ admin.initializeApp({
 const bucket = admin.storage().bucket();
 
 const uploadImage = (req, res, next) => {
-  console.log("Iniciando upload...");
   if (!req.file) return next();
 
   const image = req.file;
@@ -50,7 +49,7 @@ const uploadImage = (req, res, next) => {
 };
 
 const deleteImage = async (req, res, next) => {
-  const file = bucket.file(`images/${req.file}`);
+  const file = bucket.file(`images/${req.file.firebaseFileName}`);
 
   try {
     await file.delete();

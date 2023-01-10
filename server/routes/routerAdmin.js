@@ -38,6 +38,7 @@ router.post(
   uploadImage,
   constroller.addProject
 );
+
 router.post("/edit/project/:id", constroller.editProject);
 
 router.delete("/delete/project/:id", constroller.deleteProject);

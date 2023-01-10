@@ -36,7 +36,7 @@ const Projects = (props) => {
                 <img src={element.image} alt={`Imagem de ${element.name}`} />
               </ImageProject>
               <ProjectData>
-                {element.name && <h3>{element.name}</h3>}
+                {element.title && <h3>{element.title}</h3>}
                 {element.description && <p>{element.description}</p>}
                 {element.comments && <p>{element.comments}</p>}
                 {element.mobileSupport ? (
