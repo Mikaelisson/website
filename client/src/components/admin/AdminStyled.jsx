@@ -107,16 +107,76 @@ export const InputGroup = styled.div`
     position: absolute;
     left: 16px;
     top: 8px;
+    color: #e1ac04;
     background-color: #1f1d2a;
     padding: 0 2px;
     transition: top 0.3s;
 
     ${(props) =>
-      (props.email || props.password) &&
+      (props.email ||
+        props.password ||
+        props.title ||
+        props.description ||
+        props.comments ||
+        props.url ||
+        props.repository ||
+        props.mobileSupport ||
+        props.image) &&
       css`
         top: -8px;
         font-size: 0.9rem;
       `}
+  }
+`;
+
+export const SelectGroup = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  color: #e1ac04;
+  background-color: #1f1d2a;
+  border: #3e3a6d solid 2px;
+  border-radius: 10px;
+  padding: 10px;
+
+  select {
+    color: #e1ac04;
+    background-color: #1f1d2a;
+    border: #3e3a6d solid 2px;
+    border-radius: 8px;
+    padding: 5px;
+  }
+`;
+
+export const InputFileGroup = styled.div`
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
+
+  input[type="file"] {
+    display: none;
+  }
+
+  label {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 15px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+
+    ${(props) =>
+      props.inputImage
+        ? css`
+            color: #00bb00;
+            border: #00bb00 dashed 2px;
+          `
+        : css`
+            color: #e1ac04;
+            border: #e1ac04 dashed 2px;
+          `}
   }
 `;
 

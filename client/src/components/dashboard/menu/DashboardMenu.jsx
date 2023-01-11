@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Menu from "../../menu/Menu";
 import { Link } from "react-router-dom";
+import AddProject from "../projects/add-project/AddProject";
 
 import {
   Close,
@@ -15,18 +16,17 @@ import { AiFillHome, AiFillFileAdd } from "react-icons/ai";
 import { BiLogOutCircle } from "react-icons/bi";
 
 const DashboardMenu = (props) => {
-  const [activeMenu, setActiveMenu] = useState(false);
+  const [showAddProject, setShowAddProject] = useState(false);
 
-  const changeMenu = () => {
-    setActiveMenu(!activeMenu);
+  const onSetShowAddProject = () => {
+    setShowAddProject(!showAddProject);
   };
-
   return (
     <>
-      <Menu changeMenu={changeMenu} activeMenu={activeMenu} />
+      <Menu changeMenu={props.changeMenu} activeMenu={props.activeMenu} />
 
-      <ContainerSidebar activeMenu={activeMenu}>
-        <SidebarStyle activeMenu={activeMenu}>
+      <ContainerSidebar activeMenu={props.activeMenu}>
+        <SidebarStyle activeMenu={props.activeMenu}>
           <SidebarInformations>
             <div>
               <User>
@@ -55,7 +55,12 @@ const DashboardMenu = (props) => {
                     </Link>
                   </li>
                   <li>
-                    <button onClick={() => props.onSetShowAddProject()}>
+                    <button
+                      onClick={() => {
+                        onSetShowAddProject();
+                        props.changeMenu();
+                      }}
+                    >
                       <AiFillFileAdd /> Novo Projeto
                     </button>
                   </li>
@@ -66,6 +71,14 @@ const DashboardMenu = (props) => {
         </SidebarStyle>
         <Close onClick={() => changeMenu()} />
       </ContainerSidebar>
+
+      {showAddProject && (
+        <AddProject
+          consultProjects={props.consultProjects}
+          onSetShowAddProject={onSetShowAddProject}
+          changeLoading={props.changeLoading}
+        />
+      )}
     </>
   );
 };

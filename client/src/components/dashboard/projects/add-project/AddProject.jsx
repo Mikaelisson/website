@@ -1,40 +1,151 @@
+import { useState } from "react";
+
+import {
+  BorderEffect,
+  ButtonsForm,
+  FormLogin,
+  InputFileGroup,
+  InputGroup,
+  SelectGroup,
+} from "../../../admin/AdminStyled";
 import { Overlap } from "./AddProjectStyled";
 
-export default (props) => {
+const addProject = (props) => {
+  const [inputTitle, setInputTitle] = useState("");
+  const [inputDescription, setInputDescription] = useState("");
+  const [inputComments, setInputComments] = useState("");
+  const [inputUrl, setInputUrl] = useState("");
+  const [inputRepository, setInputRepository] = useState("");
+  const [inputImage, setInputImage] = useState("");
+
   //add new project
   const addProject = async () => {
+    props.changeLoading();
+
     const data = await fetch("/admin/add/project", {
       method: "POST",
       body: new FormData(document.getElementById("formAddProject")),
     });
     await data.json();
+
     props.onSetShowAddProject();
     props.consultProjects();
   };
 
+  const saveValue = (value, setValue) => {
+    setValue(value);
+  };
+
   return (
     <Overlap>
-      <h1>Novo Projeto</h1>
-      <form
-        id="formAddProject"
-        onSubmit={(event) => {
-          event.preventDefault();
-        }}
-        encType="multipart/form-data"
-      >
-        <input type="text" name="title" placeholder="Título" />
-        <input type="text" name="description" placeholder="Descrição" />
-        <input type="text" name="comments" placeholder="Comentários" />
-        <input type="text" name="url" placeholder="Url" />
-        <input type="text" name="repository" placeholder="Repositório" />
-        <select name="mobileSupport" form="formAddProject">
-          <option value={true}>Sim</option>
-          <option value={false}>Não</option>
-        </select>
-        <input type="file" name="image" accept="image/*" />
+      <BorderEffect>
+        <FormLogin
+          id="formAddProject"
+          onSubmit={(event) => {
+            event.preventDefault();
+          }}
+          encType="multipart/form-data"
+        >
+          <h1>Novo Projeto</h1>
 
-        <button onClick={() => addProject()}>Adicionar</button>
-      </form>
+          <InputGroup title={inputTitle}>
+            <input
+              type="text"
+              name="title"
+              value={inputTitle}
+              onChange={(event) => {
+                saveValue(event.target.value, setInputTitle);
+              }}
+            />
+            <label htmlFor="title">Título</label>
+          </InputGroup>
+
+          <InputGroup description={inputDescription}>
+            <input
+              type="text"
+              name="description"
+              value={inputDescription}
+              onChange={(event) => {
+                saveValue(event.target.value, setInputDescription);
+              }}
+            />
+            <label htmlFor="description">Descrição</label>
+          </InputGroup>
+
+          <InputGroup comments={inputComments}>
+            <input
+              type="text"
+              name="comments"
+              value={inputComments}
+              onChange={(event) => {
+                saveValue(event.target.value, setInputComments);
+              }}
+            />
+            <label htmlFor="description">Comentários</label>
+          </InputGroup>
+
+          <InputGroup url={inputUrl}>
+            <input
+              type="text"
+              name="url"
+              value={inputUrl}
+              onChange={(event) => {
+                saveValue(event.target.value, setInputUrl);
+              }}
+            />
+            <label htmlFor="url">Url</label>
+          </InputGroup>
+
+          <InputGroup repository={inputRepository}>
+            <input
+              type="text"
+              name="repository"
+              value={inputRepository}
+              onChange={(event) => {
+                saveValue(event.target.value, setInputRepository);
+              }}
+            />
+            <label htmlFor="repository">Repositório</label>
+          </InputGroup>
+
+          <SelectGroup>
+            Suporte Mobile?
+            <select name="mobileSupport" form="formAddProject">
+              <option disabled>Suporte Mobile</option>
+              <option value={true}>Sim</option>
+              <option value={false}>Não</option>
+            </select>
+          </SelectGroup>
+
+          <InputFileGroup inputImage={inputImage}>
+            <label htmlFor="image">
+              {inputImage ? (
+                <div>{inputImage}</div>
+              ) : (
+                <div>Escolher arquivo</div>
+              )}
+              <input
+                type="file"
+                name="image"
+                id="image"
+                accept="image/*"
+                onChange={(event) =>
+                  saveValue(event.target.files[0].name, setInputImage)
+                }
+              />
+            </label>
+          </InputFileGroup>
+
+          <ButtonsForm>
+            <button type="button" onClick={() => props.onSetShowAddProject()}>
+              Cancelar
+            </button>
+            <button onClick={() => addProject()}>Adicionar</button>
+          </ButtonsForm>
+        </FormLogin>
+      </BorderEffect>
     </Overlap>
   );
 };
+
+export default addProject;

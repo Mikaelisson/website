@@ -1,18 +1,23 @@
 import { useState } from "react";
 import DashboardMenu from "./menu/DashboardMenu";
 import DashboardProjects from "./projects/DashboardProjects";
-import AddProject from "./projects/add-project/AddProject";
 
 import { Background } from "../styles/Background";
 import Global from "../styles/global";
 import { DashboardHeader, DashboardMain } from "./DashboardStyled";
+import Loading from "../loading/Loading";
 
 const Dashboard = (props) => {
   const [projects, setProjects] = useState([]);
-  const [showAddProject, setShowAddProject] = useState(false);
+  const [activeMenu, setActiveMenu] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
 
-  const onSetShowAddProject = () => {
-    setShowAddProject(!showAddProject);
+  const changeMenu = () => {
+    setActiveMenu(!activeMenu);
+  };
+
+  const changeLoading = () => {
+    setShowLoading(!showLoading);
   };
 
   const consultProjects = () => {
@@ -20,6 +25,7 @@ const Dashboard = (props) => {
       .then((res) => res.json())
       .then((res) => {
         setProjects(res);
+        setShowLoading(false);
       });
   };
 
@@ -29,9 +35,13 @@ const Dashboard = (props) => {
         <DashboardHeader>
           <h1>Dashboard</h1>
           <DashboardMenu
+            activeMenu={activeMenu}
+            changeMenu={changeMenu}
             withoutPermission={props.withoutPermission}
             name={props.name}
-            onSetShowAddProject={onSetShowAddProject}
+            consultProjects={consultProjects}
+            changeLoading={changeLoading}
+            showLoading={showLoading}
           />
         </DashboardHeader>
       </Background>
@@ -41,14 +51,9 @@ const Dashboard = (props) => {
           projects={projects}
           consultProjects={consultProjects}
         />
-
-        {showAddProject && (
-          <AddProject
-            consultProjects={consultProjects}
-            onSetShowAddProject={onSetShowAddProject}
-          />
-        )}
       </DashboardMain>
+
+      {showLoading && <Loading />}
 
       <Global />
     </>

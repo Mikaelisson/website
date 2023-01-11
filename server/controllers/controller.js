@@ -22,7 +22,7 @@ const addProject = async (req, res) => {
     title: req.body.title,
     description: req.body.description,
     comments: req.body.comments,
-    mobileSupport: Boolean(req.body.mobileSupport),
+    mobileSupport: req.body.mobileSupport,
     image: req.file.firebaseUrl,
     url: req.body.url,
     repository: req.body.repository,
