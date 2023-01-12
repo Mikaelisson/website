@@ -20,16 +20,26 @@ const addProject = (props) => {
 
   //add new project
   const addProject = async () => {
-    props.changeLoading();
+    if (!inputImage) alert("Campo de imagem vazio!");
 
-    const data = await fetch("/admin/add/project", {
-      method: "POST",
-      body: new FormData(document.getElementById("formAddProject")),
-    });
-    await data.json();
+    if (
+      inputTitle &&
+      inputDescription &&
+      inputComments &&
+      inputUrl &&
+      inputImage
+    ) {
+      props.changeLoading();
 
-    props.onSetShowAddProject();
-    props.consultProjects();
+      const data = await fetch("/admin/add/project", {
+        method: "POST",
+        body: new FormData(document.getElementById("formAddProject")),
+      });
+      await data.json();
+
+      props.onSetShowAddProject();
+      props.consultProjects();
+    }
   };
 
   const saveValue = (value, setValue) => {
@@ -56,6 +66,7 @@ const addProject = (props) => {
               onChange={(event) => {
                 saveValue(event.target.value, setInputTitle);
               }}
+              required
             />
             <label htmlFor="title">Título</label>
           </InputGroup>
@@ -68,6 +79,7 @@ const addProject = (props) => {
               onChange={(event) => {
                 saveValue(event.target.value, setInputDescription);
               }}
+              required
             />
             <label htmlFor="description">Descrição</label>
           </InputGroup>
@@ -80,6 +92,7 @@ const addProject = (props) => {
               onChange={(event) => {
                 saveValue(event.target.value, setInputComments);
               }}
+              required
             />
             <label htmlFor="description">Comentários</label>
           </InputGroup>
@@ -92,6 +105,7 @@ const addProject = (props) => {
               onChange={(event) => {
                 saveValue(event.target.value, setInputUrl);
               }}
+              required
             />
             <label htmlFor="url">Url</label>
           </InputGroup>
@@ -104,13 +118,14 @@ const addProject = (props) => {
               onChange={(event) => {
                 saveValue(event.target.value, setInputRepository);
               }}
+              required
             />
             <label htmlFor="repository">Repositório</label>
           </InputGroup>
 
           <SelectGroup>
             Suporte Mobile?
-            <select name="mobileSupport" form="formAddProject">
+            <select name="mobileSupport" form="formAddProject" required>
               <option disabled>Suporte Mobile</option>
               <option value={true}>Sim</option>
               <option value={false}>Não</option>

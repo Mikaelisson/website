@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { DashboardContainer } from "./DashboardProjectsStyled";
 
 import {
@@ -7,6 +7,7 @@ import {
   ProjectData,
   LinkProject,
   ContainerButtons,
+  ButtonProject,
 } from "../../projects/ProjectStyled";
 import { Title } from "../../styles/MainStyled";
 
@@ -20,14 +21,27 @@ const DashboardProjects = (props) => {
     props.consultProjects();
   }, []);
 
+  const deleteProject = async (id) => {
+    const data = await fetch(`/admin/delete/project/${id}`, {
+      method: "DELETE",
+    });
+    await data.json();
+    props.changeLoading();
+    props.consultProjects();
+  };
+
+  const editProject = async () => {
+    console.log("edit");
+  };
+
   return (
     <DashboardContainer>
       <Title>projetos</Title>
 
       {props.projects
-        .map((element, index) => {
+        .map((element) => {
           return (
-            <Project key={index}>
+            <Project key={element._id}>
               <ImageProject>
                 <img src={element.image} alt={`Imagem de ${element.name}`} />
               </ImageProject>
@@ -61,13 +75,19 @@ const DashboardProjects = (props) => {
                   </div>
                 </LinkProject>
 
-                <LinkProject href="#" buttonBgColor={"#bb0f0f"}>
+                <ButtonProject
+                  buttonBgColor={"#bb0f0f"}
+                  onClick={() => deleteProject(element._id)}
+                >
                   <IoCloseSharp />
-                </LinkProject>
+                </ButtonProject>
 
-                <LinkProject href="#" buttonBgColor={"#8a8a8a"}>
+                <ButtonProject
+                  buttonBgColor={"#8a8a8a"}
+                  onClick={() => editProject()}
+                >
                   <AiFillEdit />
-                </LinkProject>
+                </ButtonProject>
               </ContainerButtons>
             </Project>
           );

@@ -13,13 +13,18 @@ import {
 import { Background } from "../styles/Background";
 
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import Loading from "../loading/Loading";
 
 const Admin = () => {
   const [seePassword, setSeePassword] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
   const [email, setEmail, password, setPassword, token, setToken] =
     useContext(RouteContext);
 
-  const login = () => {
+  const login = (event) => {
+    event.preventDefault();
+    setShowLoading(!showLoading);
+
     //login
     fetch("/admin/auth", {
       method: "POST",
@@ -33,6 +38,7 @@ const Admin = () => {
         res.text().then((res) => {
           localStorage.setItem("token", JSON.stringify({ token: res, email }));
           setToken(res);
+          setShowLoading(false);
         });
       }
     });
@@ -87,19 +93,14 @@ const Admin = () => {
               <Link to={"/"}>
                 <button>Cancelar</button>
               </Link>
-              <button
-                onClick={(event) => {
-                  event.preventDefault();
-                  login();
-                }}
-              >
-                Entrar
-              </button>
+              <button onClick={(event) => login(event)}>Entrar</button>
             </ButtonsForm>
           </FormLogin>
         </BorderEffect>
         <GlobalStyled />
       </Container>
+
+      {showLoading && <Loading />}
     </Background>
   );
 };

@@ -77,7 +77,6 @@ const deleteProject = async (req, res) => {
     if (!project) res.status(404).send("Projeto não existe.");
 
     const doc = await Project.findByIdAndDelete(id);
-    console.log(`Projeto deletado com sucesso ==> ${doc}`);
     res.send(doc);
   } catch (error) {
     res.status(404).send(error);

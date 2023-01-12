@@ -160,6 +160,7 @@ export const LinkProject = styled.a`
     border: transparent;
     color: #000;
     padding: 10px;
+    letter-spacing: -2px;
 
     ${(props) =>
       !props.buttonBgColor &&
@@ -175,5 +176,49 @@ export const LinkProject = styled.a`
     &:hover {
       padding: 8px;
     }
+  }
+`;
+
+export const ButtonProject = styled.button`
+  width: ${(props) => props.widthElement};
+  height: 40px;
+  cursor: pointer;
+
+  color: #000;
+  ${(props) =>
+    !props.buttonBgColor &&
+    css`
+      background-color: #e1ac04;
+    `};
+  ${(props) =>
+    props.buttonBgColor &&
+    css`
+      background-color: ${props.buttonBgColor};
+    `};
+
+  border: transparent solid 2px;
+  border-radius: 100%;
+  padding: 8px;
+
+  &:hover {
+    ${(props) =>
+      !props.buttonBgColor &&
+      css`
+        color: #e1ac04;
+        border: #e1ac04 solid 2px;
+        background-color: transparent;
+      `};
+    ${(props) =>
+      props.buttonBgColor &&
+      css`
+        color: ${props.buttonBgColor};
+        border: ${props.buttonBgColor} solid 2px;
+        background-color: transparent;
+      `};
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
   }
 `;

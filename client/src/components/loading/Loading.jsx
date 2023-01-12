@@ -27,7 +27,7 @@ const LoadingStyled = styled.div`
     animation: load 2s infinite;
   }
   ::before {
-    animation-delay: 0.5s;
+    animation: load 1s infinite;
   }
   @keyframes load {
     0% {

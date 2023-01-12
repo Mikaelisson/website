@@ -50,6 +50,7 @@ const Dashboard = (props) => {
         <DashboardProjects
           projects={projects}
           consultProjects={consultProjects}
+          changeLoading={changeLoading}
         />
       </DashboardMain>
 
