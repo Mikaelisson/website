@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 
 import {
@@ -8,9 +9,9 @@ import {
   InputGroup,
   SelectGroup,
 } from "../../../admin/AdminStyled";
-import { Overlap } from "./AddProjectStyled";
+import { Overlap } from "./AddOrEditProjectStyled";
 
-const addProject = (props) => {
+const AddOrEditProject = (props) => {
   const [inputTitle, setInputTitle] = useState("");
   const [inputDescription, setInputDescription] = useState("");
   const [inputComments, setInputComments] = useState("");
@@ -37,10 +38,31 @@ const addProject = (props) => {
       });
       await data.json();
 
-      props.onSetShowAddProject();
+      props.showAddOrEditProject();
       props.consultProjects();
     }
   };
+
+  if (props.dataEdit) {
+    useEffect(() => {
+      const {
+        _id,
+        title,
+        description,
+        comments,
+        url,
+        repository,
+        image,
+        mobileSupport,
+      } = props.dataEdit[0];
+
+      saveValue(title, setInputTitle);
+      saveValue(description, setInputDescription);
+      saveValue(comments, setInputComments);
+      saveValue(url, setInputUrl);
+      saveValue(repository, setInputRepository);
+    }, [props.dataEdit]);
+  }
 
   const saveValue = (value, setValue) => {
     setValue(value);
@@ -56,7 +78,7 @@ const addProject = (props) => {
           }}
           encType="multipart/form-data"
         >
-          <h1>Novo Projeto</h1>
+          <h1>{props.title}</h1>
 
           <InputGroup title={inputTitle}>
             <input
@@ -152,10 +174,14 @@ const addProject = (props) => {
           </InputFileGroup>
 
           <ButtonsForm>
-            <button type="button" onClick={() => props.onSetShowAddProject()}>
+            <button type="button" onClick={() => props.showAddOrEditProject()}>
               Cancelar
             </button>
-            <button onClick={() => addProject()}>Adicionar</button>
+            <button
+              onClick={() => (props.callback ? props.callback() : addProject())}
+            >
+              Salvar
+            </button>
           </ButtonsForm>
         </FormLogin>
       </BorderEffect>
@@ -163,4 +189,4 @@ const addProject = (props) => {
   );
 };
 
-export default addProject;
+export default AddOrEditProject;

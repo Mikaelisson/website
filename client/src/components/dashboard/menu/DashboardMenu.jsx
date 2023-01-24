@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Menu from "../../menu/Menu";
 import { Link } from "react-router-dom";
-import AddProject from "../projects/add-project/AddProject";
+import AddOrEditProject from "../projects/add-project/AddOrEditProject";
 
 import {
   Close,
@@ -21,6 +21,7 @@ const DashboardMenu = (props) => {
   const onSetShowAddProject = () => {
     setShowAddProject(!showAddProject);
   };
+
   return (
     <>
       <Menu changeMenu={props.changeMenu} activeMenu={props.activeMenu} />
@@ -73,10 +74,12 @@ const DashboardMenu = (props) => {
       </ContainerSidebar>
 
       {showAddProject && (
-        <AddProject
+        <AddOrEditProject
+          title={`Novo Projeto`}
           consultProjects={props.consultProjects}
-          onSetShowAddProject={onSetShowAddProject}
+          showAddOrEditProject={onSetShowAddProject}
           changeLoading={props.changeLoading}
+          showAddProject={showAddProject}
         />
       )}
     </>
