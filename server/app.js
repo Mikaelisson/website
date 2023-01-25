@@ -22,7 +22,7 @@ if (process.env.NODE_ENV != "development") {
   sess.cookie.secure = true; // serve secure cookies
 }
 
-if (process.env.NODE_ENV !== "development") {
+if (process.env.NODE_ENV != "development") {
   app.use(express.static(path.join(__dirname, "../client/dist/index.html")));
 
   app.get("*", (req, res) => {

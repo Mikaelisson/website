@@ -12,6 +12,7 @@ import {
 import { Overlap } from "./AddOrEditProjectStyled";
 
 const AddOrEditProject = (props) => {
+  const [ID, setID] = useState("");
   const [inputTitle, setInputTitle] = useState("");
   const [inputDescription, setInputDescription] = useState("");
   const [inputComments, setInputComments] = useState("");
@@ -34,10 +35,33 @@ const AddOrEditProject = (props) => {
 
       const data = await fetch("/admin/add/project", {
         method: "POST",
-        body: new FormData(document.getElementById("formAddProject")),
+        body: new FormData(document.getElementById("formProject")),
       });
       await data.json();
 
+      props.showAddOrEditProject();
+      props.consultProjects();
+    }
+  };
+
+  const saveEditProject = async (element) => {
+    if (inputTitle && inputDescription && inputComments && inputUrl) {
+      props.changeLoading();
+
+      const data = await fetch(`/admin/edit/project/${element[0].id}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: inputTitle,
+          description: inputDescription,
+          comments: inputComments,
+          url: inputUrl,
+          repository: inputRepository,
+        }),
+      });
+      const doc = await data.json();
+
+      console.log(doc);
       props.showAddOrEditProject();
       props.consultProjects();
     }
@@ -61,6 +85,7 @@ const AddOrEditProject = (props) => {
       saveValue(comments, setInputComments);
       saveValue(url, setInputUrl);
       saveValue(repository, setInputRepository);
+      saveValue(_id, setID);
     }, [props.dataEdit]);
   }
 
@@ -72,7 +97,7 @@ const AddOrEditProject = (props) => {
     <Overlap>
       <BorderEffect>
         <FormLogin
-          id="formAddProject"
+          id="formProject"
           onSubmit={(event) => {
             event.preventDefault();
           }}
@@ -147,7 +172,7 @@ const AddOrEditProject = (props) => {
 
           <SelectGroup>
             Suporte Mobile?
-            <select name="mobileSupport" form="formAddProject" required>
+            <select name="mobileSupport" form="formProject" required>
               <option disabled>Suporte Mobile</option>
               <option value={true}>Sim</option>
               <option value={false}>Não</option>
@@ -178,7 +203,21 @@ const AddOrEditProject = (props) => {
               Cancelar
             </button>
             <button
-              onClick={() => (props.callback ? props.callback() : addProject())}
+              onClick={() =>
+                props.title == "Editar Projeto"
+                  ? saveEditProject([
+                      {
+                        id: ID,
+                        title: inputTitle,
+                        description: inputDescription,
+                        comments: inputComments,
+                        url: inputUrl,
+                        repository: inputRepository,
+                        inputImage: inputImage,
+                      },
+                    ])
+                  : addProject()
+              }
             >
               Salvar
             </button>

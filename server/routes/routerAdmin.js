@@ -11,16 +11,6 @@ const { uploadImage } = require("../firebase/firebaseConfig");
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
 
-//upload
-router.post(
-  "/upload",
-  multer(multerConfig).single("image"),
-  uploadImage,
-  (req, res) => {
-    res.send("Success");
-  }
-);
-
 //routes auth
 router.post("/auth", loginController, auth, constrollerUsers.dashboard);
 router.post("/auth/token", constrollerUsers.validateToken);

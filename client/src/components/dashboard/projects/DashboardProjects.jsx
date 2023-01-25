@@ -41,10 +41,6 @@ const DashboardProjects = (props) => {
     setShowEditProject(!showEditProject);
   };
 
-  const saveEditProject = async (element) => {
-    console.log("Save Project");
-  };
-
   return (
     <>
       <DashboardContainer>
@@ -109,10 +105,10 @@ const DashboardProjects = (props) => {
       {showEditProject && (
         <AddOrEditProject
           title={`Editar Projeto`}
-          callback={saveEditProject}
           showAddOrEditProject={openEditProject}
           changeLoading={props.changeLoading}
           dataEdit={dataEdit}
+          consultProjects={props.consultProjects}
         />
       )}
     </>

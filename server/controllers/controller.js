@@ -46,24 +46,24 @@ const editProject = async (req, res) => {
   if (error) res.status(404).send(`Error do JOI ==> ${error.message}`);
 
   try {
-    const doc = await Project.findById(id);
+    // const doc = await Project.findById(id);
 
-    if (
-      data.title === doc.title ||
-      data.description === doc.description ||
-      data.comments === doc.comments ||
-      data.mobileSupport === doc.mobileSupport ||
-      data.image === doc.image ||
-      data.url === doc.url ||
-      data.repository === doc.repository
-    ) {
-      const error =
-        "Error, os dados inseridos já se encontram no banco de dados.";
-      res.status(404).send(error);
-    }
+    // if (
+    //   data.title === doc.title ||
+    //   data.description === doc.description ||
+    //   data.comments === doc.comments ||
+    //   data.mobileSupport === doc.mobileSupport ||
+    //   data.image === doc.image ||
+    //   data.url === doc.url ||
+    //   data.repository === doc.repository
+    // ) {
+    //   const error =
+    //     "Error, os dados inseridos já se encontram no banco de dados.";
+    //   res.status(404).send(error);
+    // }
 
     await Project.findByIdAndUpdate(id, data);
-    res.send("Tudo certo");
+    res.json({ msg: "Tudo certo" });
   } catch (error) {
     res.status(404).send(error);
   }
