@@ -28,6 +28,8 @@ const DashboardProjects = (props) => {
   const deleteProject = async (id) => {
     const data = await fetch(`/admin/delete/project/${id}`, {
       method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: props.email }),
     });
     await data.json();
     props.changeLoading();

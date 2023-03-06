@@ -39,6 +39,7 @@ const Dashboard = (props) => {
             changeMenu={changeMenu}
             withoutPermission={props.withoutPermission}
             name={props.name}
+            email={props.email}
             consultProjects={consultProjects}
             changeLoading={changeLoading}
             showLoading={showLoading}
@@ -51,6 +52,7 @@ const Dashboard = (props) => {
           projects={projects}
           consultProjects={consultProjects}
           changeLoading={changeLoading}
+          email={props.email}
         />
       </DashboardMain>
 

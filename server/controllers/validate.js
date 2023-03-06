@@ -8,6 +8,7 @@ const addProjectValidate = (data) => {
     mobileSupport: Joi.boolean().required(),
     url: Joi.string().required(),
     repository: Joi.string().required(),
+    email: Joi.string(),
   });
 
   return schema.validate(data);

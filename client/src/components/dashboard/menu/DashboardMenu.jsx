@@ -17,6 +17,7 @@ import { BiLogOutCircle } from "react-icons/bi";
 
 const DashboardMenu = (props) => {
   const [showAddProject, setShowAddProject] = useState(false);
+  const [email, setEmail] = useState(props.email);
 
   const onSetShowAddProject = () => {
     setShowAddProject(!showAddProject);
@@ -32,6 +33,14 @@ const DashboardMenu = (props) => {
             <div>
               <User>
                 <p>Seja bem vindo, {props.name}!</p>
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  onChange={() => setEmail(props.email)}
+                  value={email}
+                  hidden
+                />
                 <button
                   onClick={() => {
                     localStorage.setItem("token", JSON.stringify({}));

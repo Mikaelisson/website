@@ -75,14 +75,18 @@ const deleteUser = async (req, res) => {
   }
 };
 
+//validate token
 const validateToken = async (req, res) => {
   try {
     const data = await User.findOne({ email: req.body.email }, "-password");
     jwt.verify(data.token, process.env.TOKEN_SECRET);
+
+    //return json with token and name
     const doc = {
       token: data.token,
       name: data.name,
     };
+
     res.json(doc);
   } catch (error) {
     res.status(404).send(error);

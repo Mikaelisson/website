@@ -102,6 +102,7 @@ const PrivateRoute = () => {
           authorization={authorization}
           withoutPermission={withoutPermission}
           name={name}
+          email={email}
         />
       ) : null}
     </ContainerRoute>

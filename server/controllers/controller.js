@@ -1,6 +1,8 @@
 const { deleteImage } = require("../firebase/firebaseConfig");
 const Project = require("../models/Project");
 const { addProjectValidate, editProjectValidate } = require("./validate");
+const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 
 const searchProject = async (req, res) => {
   try {
@@ -9,6 +11,12 @@ const searchProject = async (req, res) => {
   } catch (error) {
     res.status(404).send(error);
   }
+};
+
+const validateToken = async (email) => {
+  const validate = await User.findOne({ email }, "-password");
+  const token = jwt.verify(validate.token, process.env.TOKEN_SECRET);
+  return token;
 };
 
 const addProject = async (req, res) => {
@@ -29,6 +37,7 @@ const addProject = async (req, res) => {
   });
 
   try {
+    await validateToken(req.body.email);
     const doc = await data.save();
     console.log("Documento adicionado com sucesso!");
     res.json(doc);
@@ -40,28 +49,20 @@ const addProject = async (req, res) => {
 const editProject = async (req, res) => {
   let id = req.params.id;
 
-  const data = req.body;
+  const data = {
+    title: req.body.title,
+    description: req.body.description,
+    comments: req.body.comments,
+    mobileSupport: req.body.mobileSupport,
+    url: req.body.url,
+    repository: req.body.repository,
+  };
   const { error } = editProjectValidate(data);
 
   if (error) res.status(404).send(`Error do JOI ==> ${error.message}`);
 
   try {
-    // const doc = await Project.findById(id);
-
-    // if (
-    //   data.title === doc.title ||
-    //   data.description === doc.description ||
-    //   data.comments === doc.comments ||
-    //   data.mobileSupport === doc.mobileSupport ||
-    //   data.image === doc.image ||
-    //   data.url === doc.url ||
-    //   data.repository === doc.repository
-    // ) {
-    //   const error =
-    //     "Error, os dados inseridos já se encontram no banco de dados.";
-    //   res.status(404).send(error);
-    // }
-
+    await validateToken(req.body.email);
     await Project.findByIdAndUpdate(id, data);
     res.json({ msg: "Tudo certo" });
   } catch (error) {
@@ -76,6 +77,7 @@ const deleteProject = async (req, res) => {
     const project = await Project.findById(id);
     if (!project) res.status(404).send("Projeto não existe.");
 
+    await validateToken(req.body.email);
     const doc = await Project.findByIdAndDelete(id);
     res.send(doc);
   } catch (error) {
