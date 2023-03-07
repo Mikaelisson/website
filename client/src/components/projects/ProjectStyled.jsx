@@ -42,6 +42,7 @@ export const ImageProject = styled.div`
   grid-column-end: 1;
   grid-row-start: 1;
   grid-row-end: 1;
+  position: relative;
 
   @media screen and (max-width: 768px) {
     max-width: 100%;
@@ -57,6 +58,20 @@ export const ImageProject = styled.div`
       border-top-right-radius: 28px;
       border: 0;
     }
+  }
+
+  button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+  }
+
+  button svg{
+    width: 15px;
+    height: 15px;
   }
 `;
 

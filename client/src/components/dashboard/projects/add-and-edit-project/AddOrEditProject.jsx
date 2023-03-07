@@ -44,6 +44,7 @@ const AddOrEditProject = (props) => {
     }
   };
 
+  //save edited project
   const saveEditProject = async (element) => {
     if (inputTitle && inputDescription && inputComments && inputUrl) {
       props.changeLoading();
@@ -59,9 +60,8 @@ const AddOrEditProject = (props) => {
           repository: inputRepository,
         }),
       });
-      const doc = await data.json();
+      await data.json();
 
-      console.log(doc);
       props.showAddOrEditProject();
       props.consultProjects();
     }
@@ -179,25 +179,6 @@ const AddOrEditProject = (props) => {
             </select>
           </SelectGroup>
 
-          <InputFileGroup inputImage={inputImage}>
-            <label htmlFor="image">
-              {inputImage ? (
-                <div>{inputImage}</div>
-              ) : (
-                <div>Escolher arquivo</div>
-              )}
-              <input
-                type="file"
-                name="image"
-                id="image"
-                accept="image/*"
-                onChange={(event) =>
-                  saveValue(event.target.files[0].name, setInputImage)
-                }
-              />
-            </label>
-          </InputFileGroup>
-
           <ButtonsForm>
             <button type="button" onClick={() => props.showAddOrEditProject()}>
               Cancelar
@@ -213,7 +194,7 @@ const AddOrEditProject = (props) => {
                         comments: inputComments,
                         url: inputUrl,
                         repository: inputRepository,
-                        inputImage: inputImage,
+                        // inputImage: inputImage,
                       },
                     ])
                   : addProject()

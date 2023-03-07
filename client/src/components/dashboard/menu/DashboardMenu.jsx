@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Menu from "../../menu/Menu";
 import { Link } from "react-router-dom";
-import AddOrEditProject from "../projects/add-project/AddOrEditProject";
+import AddOrEditProject from "../projects/add-and-edit-project/AddOrEditProject";
 
 import {
   Close,
@@ -79,7 +79,7 @@ const DashboardMenu = (props) => {
             </div>
           </SidebarInformations>
         </SidebarStyle>
-        <Close onClick={() => changeMenu()} />
+        <Close onClick={() => props.changeMenu()} />
       </ContainerSidebar>
 
       {showAddProject && (

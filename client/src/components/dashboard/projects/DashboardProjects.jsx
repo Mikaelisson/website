@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import AddOrEditProject from "./add-project/AddOrEditProject";
+import AddOrEditProject from "./add-and-edit-project/AddOrEditProject";
 
 import {
   Project,
@@ -11,6 +11,7 @@ import {
 } from "../../projects/ProjectStyled";
 import { Title } from "../../styles/MainStyled";
 import { DashboardContainer } from "./DashboardProjectsStyled";
+import EditImage from "./add-and-edit-project/EditImage";
 
 import { IoCloseSharp } from "react-icons/io5";
 import { AiFillEdit } from "react-icons/ai";
@@ -20,11 +21,14 @@ import { BiLinkExternal } from "react-icons/bi";
 const DashboardProjects = (props) => {
   const [showEditProject, setShowEditProject] = useState(false);
   const [dataEdit, setDataEdit] = useState("");
+  const [showEditImage, setShowEditImage] = useState(false);
 
+  //query projects
   useEffect(() => {
     props.consultProjects();
   }, []);
 
+  //delete project
   const deleteProject = async (id) => {
     const data = await fetch(`/admin/delete/project/${id}`, {
       method: "DELETE",
@@ -32,15 +36,21 @@ const DashboardProjects = (props) => {
       body: JSON.stringify({ email: props.email }),
     });
     await data.json();
-    props.changeLoading();
+    props.changeLoading(); //view screen loading
     props.consultProjects();
   };
 
+  //open edit screen
   const openEditProject = async (event) => {
     if (!showEditProject) {
       setDataEdit(props.projects.filter((project) => project._id == event._id));
     }
-    setShowEditProject(!showEditProject);
+    setShowEditProject(!showEditProject); //show and hide screen editing
+  };
+
+  //edit image
+  const editImage = () => {
+    setShowEditImage(!showEditImage);
   };
 
   return (
@@ -54,6 +64,12 @@ const DashboardProjects = (props) => {
               <Project key={element._id}>
                 <ImageProject>
                   <img src={element.image} alt={`Imagem de ${element.name}`} />
+                  <ButtonProject
+                    buttonBgColor={"#8a8a8a"}
+                    onClick={() => editImage()}
+                  >
+                    <AiFillEdit />
+                  </ButtonProject>
                 </ImageProject>
                 <ProjectData>
                   {element.title && <h3>{element.title}</h3>}
@@ -113,6 +129,8 @@ const DashboardProjects = (props) => {
           consultProjects={props.consultProjects}
         />
       )}
+
+      {showEditImage && <EditImage editImage={editImage} />}
     </>
   );
 };
