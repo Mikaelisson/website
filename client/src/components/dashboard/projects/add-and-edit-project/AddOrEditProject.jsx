@@ -194,7 +194,6 @@ const AddOrEditProject = (props) => {
                         comments: inputComments,
                         url: inputUrl,
                         repository: inputRepository,
-                        // inputImage: inputImage,
                       },
                     ])
                   : addProject()

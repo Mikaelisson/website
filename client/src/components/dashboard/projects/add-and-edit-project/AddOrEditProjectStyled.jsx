@@ -15,6 +15,7 @@ export const Overlap = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 
   form{
     display: flex;

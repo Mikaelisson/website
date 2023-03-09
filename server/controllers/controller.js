@@ -37,7 +37,7 @@ const addProject = async (req, res) => {
   });
 
   try {
-    await validateToken(req.body.email);
+    // await validateToken(req.body.email);
     const doc = await data.save();
     console.log("Documento adicionado com sucesso!");
     res.json(doc);
@@ -70,6 +70,18 @@ const editProject = async (req, res) => {
   }
 };
 
+const editProjectImage = async (req, res) => {
+  let id = req.params.id;
+
+  try {
+    await validateToken(req.body.email);
+    await Project.findByIdAndUpdate(id, { image: req.file.firebaseUrl });
+    res.json({ teste: "Upload realizado com sucesso" });
+  } catch (error) {
+    res.status(404).send(error);
+  }
+};
+
 const deleteProject = async (req, res) => {
   let id = req.params.id;
 
@@ -90,4 +102,5 @@ module.exports = {
   addProject,
   editProject,
   deleteProject,
+  editProjectImage,
 };

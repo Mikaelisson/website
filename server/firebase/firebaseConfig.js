@@ -41,7 +41,7 @@ const uploadImage = (req, res, next) => {
     req.file.firebaseFileName = fileName;
 
     req.file.firebaseUrl = `https://firebasestorage.googleapis.com/v0/b/${BUCKET}/o/images%2F${fileName}?alt=media`;
-    
+    console.log(req.file.firebaseUrl)
     next();
   });
 

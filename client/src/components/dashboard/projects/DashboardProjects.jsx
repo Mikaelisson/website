@@ -22,6 +22,7 @@ const DashboardProjects = (props) => {
   const [showEditProject, setShowEditProject] = useState(false);
   const [dataEdit, setDataEdit] = useState("");
   const [showEditImage, setShowEditImage] = useState(false);
+  const [imageEditingData, setImageEditingData] = useState("");
 
   //query projects
   useEffect(() => {
@@ -41,15 +42,18 @@ const DashboardProjects = (props) => {
   };
 
   //open edit screen
-  const openEditProject = async (event) => {
+  const openEditProject = async (element) => {
     if (!showEditProject) {
-      setDataEdit(props.projects.filter((project) => project._id == event._id));
+      setDataEdit(
+        props.projects.filter((project) => project._id == element._id)
+      );
     }
     setShowEditProject(!showEditProject); //show and hide screen editing
   };
 
   //edit image
-  const editImage = () => {
+  const editImage = (element) => {
+    setImageEditingData(element);
     setShowEditImage(!showEditImage);
   };
 
@@ -66,7 +70,7 @@ const DashboardProjects = (props) => {
                   <img src={element.image} alt={`Imagem de ${element.name}`} />
                   <ButtonProject
                     buttonBgColor={"#8a8a8a"}
-                    onClick={() => editImage()}
+                    onClick={() => editImage(element)}
                   >
                     <AiFillEdit />
                   </ButtonProject>
@@ -130,7 +134,13 @@ const DashboardProjects = (props) => {
         />
       )}
 
-      {showEditImage && <EditImage editImage={editImage} />}
+      {showEditImage && (
+        <EditImage
+          editImage={editImage}
+          imageEditingData={imageEditingData}
+          email={props.email}
+        />
+      )}
     </>
   );
 };

@@ -29,7 +29,16 @@ router.post(
   constroller.addProject
 );
 
+//edit project
 router.post("/edit/project/:id", constroller.editProject);
+
+//edit project image
+router.post(
+  "/edit/project/image/:id",
+  multer(multerConfig).single("image"),
+  uploadImage,
+  constroller.editProjectImage
+);
 
 router.delete("/delete/project/:id", constroller.deleteProject);
 

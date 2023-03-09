@@ -9,39 +9,73 @@ import { ContainerEditImage } from "./EditImageStyled";
 
 const EditImage = (props) => {
   const [inputImage, setInputImage] = useState("");
+  const [email, setEmail] = useState(props.email);
+
+  const uploadImage = async () => {
+    const data = await fetch(
+      `/admin/edit/project/image/${props.imageEditingData._id}`,
+      {
+        method: "POST",
+        body: new FormData(document.getElementById("formEditImageProject")),
+      }
+    );
+    const doc = await data.json();
+    console.log(doc);
+  };
+
   return (
     <Overlap>
       <BorderEffect>
         <ContainerEditImage>
           <h1>Editar Imagem</h1>
 
-          <InputFileGroup inputImage={inputImage}>
-            <label htmlFor="image">
-              {inputImage ? (
-                <div>{inputImage}</div>
-              ) : (
-                <div>Escolher arquivo</div>
-              )}
-              <input
-                type="file"
-                name="image"
-                id="image"
-                accept="image/*"
-                onChange={(event) => setInputImage(event.target.files[0].name)}
-              />
-            </label>
-          </InputFileGroup>
+          <form
+            id="formEditImageProject"
+            onSubmit={(event) => {
+              event.preventDefault();
+            }}
+            encType="multipart/form-data"
+            style={{ width: "100%" }}
+          >
+            <InputFileGroup inputImage={inputImage}>
+              <label htmlFor="image">
+                {inputImage ? (
+                  <div>{inputImage}</div>
+                ) : (
+                  <div>Escolher arquivo</div>
+                )}
+                <input
+                  type="file"
+                  name="image"
+                  id="image"
+                  required
+                  accept="image/*"
+                  onChange={(event) => {
+                    setInputImage(event.target.files[0].name);
+                  }}
+                />
+              </label>
+            </InputFileGroup>
+            <input
+              type="text"
+              name="email"
+              onChange={() => setEmail(props.email)}
+              value={email}
+              hidden
+            />
+          </form>
 
           <ButtonsForm>
-            <button
-              type="button"
-              onClick={() => {
-                props.editImage();
-              }}
-            >
+            <button type="button" onClick={() => props.editImage()}>
               Cancelar
             </button>
-            <button onClick={() => {}}>Salvar</button>
+            <button
+              onClick={() => {
+                uploadImage();
+              }}
+            >
+              Salvar
+            </button>
           </ButtonsForm>
         </ContainerEditImage>
       </BorderEffect>
