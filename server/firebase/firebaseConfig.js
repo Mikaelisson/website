@@ -41,7 +41,7 @@ const uploadImage = (req, res, next) => {
     req.file.firebaseFileName = fileName;
 
     req.file.firebaseUrl = `https://firebasestorage.googleapis.com/v0/b/${BUCKET}/o/images%2F${fileName}?alt=media`;
-    console.log(req.file.firebaseUrl)
+    
     next();
   });
 
@@ -60,4 +60,17 @@ const deleteImage = async (req, res, next) => {
   }
 };
 
-module.exports = { uploadImage, deleteImage };
+
+const deleteImageAfterEditing = async (image) => {
+  const file = bucket.file(`images/${image}`);
+
+  try {
+    await file.delete();
+    console.log("Imagem deletada com sucesso!")
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).send(error)
+  }
+};
+
+module.exports = { uploadImage, deleteImage, deleteImageAfterEditing };

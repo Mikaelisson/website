@@ -11,6 +11,7 @@ const Dashboard = (props) => {
   const [projects, setProjects] = useState([]);
   const [activeMenu, setActiveMenu] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
+  const [uploadImage, setUploadImage] = useState(true);
 
   const changeMenu = () => {
     setActiveMenu(!activeMenu);
@@ -18,6 +19,10 @@ const Dashboard = (props) => {
 
   const changeLoading = () => {
     setShowLoading(!showLoading);
+  };
+
+  const changeUploadImage = (param) => {
+    setUploadImage(param);
   };
 
   const consultProjects = () => {
@@ -43,6 +48,8 @@ const Dashboard = (props) => {
             consultProjects={consultProjects}
             changeLoading={changeLoading}
             showLoading={showLoading}
+            uploadImage={uploadImage}
+            changeUploadImage={changeUploadImage}
           />
         </DashboardHeader>
       </Background>
@@ -53,6 +60,8 @@ const Dashboard = (props) => {
           consultProjects={consultProjects}
           changeLoading={changeLoading}
           email={props.email}
+          uploadImage={uploadImage}
+          changeUploadImage={changeUploadImage}
         />
       </DashboardMain>
 

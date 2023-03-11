@@ -19,6 +19,7 @@ const AddOrEditProject = (props) => {
   const [inputUrl, setInputUrl] = useState("");
   const [inputRepository, setInputRepository] = useState("");
   const [inputImage, setInputImage] = useState("");
+  const [email, setEmail] = useState(props.email);
 
   //add new project
   const addProject = async () => {
@@ -178,6 +179,36 @@ const AddOrEditProject = (props) => {
               <option value={false}>Não</option>
             </select>
           </SelectGroup>
+
+          {props.uploadImage && (
+            <InputFileGroup inputImage={inputImage}>
+              <label htmlFor="image">
+                {inputImage ? (
+                  <div>{inputImage}</div>
+                ) : (
+                  <div>Escolher arquivo</div>
+                )}
+                <input
+                  type="file"
+                  name="image"
+                  id="image"
+                  required
+                  accept="image/*"
+                  onChange={(event) => {
+                    saveValue(event.target.files[0].name, setInputImage);
+                  }}
+                />
+              </label>
+            </InputFileGroup>
+          )}
+
+          <input
+            type="text"
+            name="email"
+            onChange={() => setEmail(props.email)}
+            value={email}
+            hidden
+          />
 
           <ButtonsForm>
             <button type="button" onClick={() => props.showAddOrEditProject()}>

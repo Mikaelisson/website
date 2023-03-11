@@ -69,6 +69,7 @@ const DashboardMenu = (props) => {
                       onClick={() => {
                         onSetShowAddProject();
                         props.changeMenu();
+                        props.changeUploadImage(true);
                       }}
                     >
                       <AiFillFileAdd /> Novo Projeto
@@ -89,6 +90,8 @@ const DashboardMenu = (props) => {
           showAddOrEditProject={onSetShowAddProject}
           changeLoading={props.changeLoading}
           showAddProject={showAddProject}
+          uploadImage={props.uploadImage}
+          email={props.email}
         />
       )}
     </>

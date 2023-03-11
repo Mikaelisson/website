@@ -44,6 +44,7 @@ const DashboardProjects = (props) => {
   //open edit screen
   const openEditProject = async (element) => {
     if (!showEditProject) {
+      props.changeUploadImage(false);
       setDataEdit(
         props.projects.filter((project) => project._id == element._id)
       );
@@ -131,6 +132,8 @@ const DashboardProjects = (props) => {
           changeLoading={props.changeLoading}
           dataEdit={dataEdit}
           consultProjects={props.consultProjects}
+          uploadImage={props.uploadImage}
+          email={props.email}
         />
       )}
 
@@ -139,6 +142,7 @@ const DashboardProjects = (props) => {
           editImage={editImage}
           imageEditingData={imageEditingData}
           email={props.email}
+          uploadImage={props.uploadImage}
         />
       )}
     </>

@@ -1,4 +1,7 @@
-const { deleteImage } = require("../firebase/firebaseConfig");
+const {
+  deleteImage,
+  deleteImageAfterEditing,
+} = require("../firebase/firebaseConfig");
 const Project = require("../models/Project");
 const { addProjectValidate, editProjectValidate } = require("./validate");
 const User = require("../models/User");
@@ -20,6 +23,7 @@ const validateToken = async (email) => {
 };
 
 const addProject = async (req, res) => {
+  console.log(req.body)
   const { error } = addProjectValidate(req.body);
   if (error) {
     res.status(404).send(`Error JOI ==> ${error.message}`);
@@ -37,16 +41,16 @@ const addProject = async (req, res) => {
   });
 
   try {
-    // await validateToken(req.body.email);
-    const doc = await data.save();
-    console.log("Documento adicionado com sucesso!");
-    res.json(doc);
+    await validateToken(req.body.email);
+    await data.save();
+    res.json({ message: "Documento adicionado com sucesso!" });
   } catch (error) {
     res.status(404).send(error);
   }
 };
 
 const editProject = async (req, res) => {
+  console.log(req.body)
   let id = req.params.id;
 
   const data = {
@@ -64,7 +68,7 @@ const editProject = async (req, res) => {
   try {
     await validateToken(req.body.email);
     await Project.findByIdAndUpdate(id, data);
-    res.json({ msg: "Tudo certo" });
+    res.json({ message: "Edição realizada com sucesso!" });
   } catch (error) {
     res.status(404).send(error);
   }
@@ -75,8 +79,13 @@ const editProjectImage = async (req, res) => {
 
   try {
     await validateToken(req.body.email);
+
+    const doc = await Project.findById(id);
+    
+    await deleteImageAfterEditing(doc.image.slice(83, -10))
+
     await Project.findByIdAndUpdate(id, { image: req.file.firebaseUrl });
-    res.json({ teste: "Upload realizado com sucesso" });
+    res.json({ message: "Upload realizado com sucesso!" });
   } catch (error) {
     res.status(404).send(error);
   }
@@ -90,8 +99,8 @@ const deleteProject = async (req, res) => {
     if (!project) res.status(404).send("Projeto não existe.");
 
     await validateToken(req.body.email);
-    const doc = await Project.findByIdAndDelete(id);
-    res.send(doc);
+    await Project.findByIdAndDelete(id);
+    res.json({ message: "Exclusão realizada com sucesso!" });
   } catch (error) {
     res.status(404).send(error);
   }
