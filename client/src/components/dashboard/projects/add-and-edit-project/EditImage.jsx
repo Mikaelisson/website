@@ -12,6 +12,7 @@ const EditImage = (props) => {
   const [email, setEmail] = useState(props.email);
 
   const uploadImage = async () => {
+    props.changeLoading();
     const data = await fetch(
       `/admin/edit/project/image/${props.imageEditingData._id}`,
       {
@@ -21,6 +22,8 @@ const EditImage = (props) => {
     );
     const doc = await data.json();
     console.log(doc);
+    props.editImage();
+    props.consultProjects();
   };
 
   return (

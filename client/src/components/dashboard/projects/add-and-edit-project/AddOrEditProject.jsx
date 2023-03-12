@@ -19,6 +19,7 @@ const AddOrEditProject = (props) => {
   const [inputUrl, setInputUrl] = useState("");
   const [inputRepository, setInputRepository] = useState("");
   const [inputImage, setInputImage] = useState("");
+  const [mobileSupport, setMobileSupport] = useState("");
   const [email, setEmail] = useState(props.email);
 
   //add new project
@@ -59,6 +60,8 @@ const AddOrEditProject = (props) => {
           comments: inputComments,
           url: inputUrl,
           repository: inputRepository,
+          mobileSupport: mobileSupport,
+          email: props.email,
         }),
       });
       await data.json();
@@ -87,6 +90,7 @@ const AddOrEditProject = (props) => {
       saveValue(url, setInputUrl);
       saveValue(repository, setInputRepository);
       saveValue(_id, setID);
+      saveValue(mobileSupport, setMobileSupport);
     }, [props.dataEdit]);
   }
 
@@ -173,9 +177,16 @@ const AddOrEditProject = (props) => {
 
           <SelectGroup>
             Suporte Mobile?
-            <select name="mobileSupport" form="formProject" required>
-              <option disabled>Suporte Mobile</option>
+            <select
+              name="mobileSupport"
+              form="formProject"
+              onChange={(e) => saveValue(e.target.value, setMobileSupport)}
+              required
+            >
+              <option value={mobileSupport}>Padrão</option>
+
               <option value={true}>Sim</option>
+
               <option value={false}>Não</option>
             </select>
           </SelectGroup>

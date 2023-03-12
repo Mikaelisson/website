@@ -68,7 +68,7 @@ const DashboardProjects = (props) => {
             return (
               <Project key={element._id}>
                 <ImageProject>
-                  <img src={element.image} alt={`Imagem de ${element.name}`} />
+                  <img src={element.image} alt={`Imagem do projeto`} />
                   <ButtonProject
                     buttonBgColor={"#8a8a8a"}
                     onClick={() => editImage(element)}
@@ -143,6 +143,8 @@ const DashboardProjects = (props) => {
           imageEditingData={imageEditingData}
           email={props.email}
           uploadImage={props.uploadImage}
+          changeLoading={props.changeLoading}
+          consultProjects={props.consultProjects}
         />
       )}
     </>

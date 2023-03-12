@@ -25,7 +25,6 @@ router.delete("/delete/user/:id", constrollerUsers.deleteUser);
 router.post(
   "/add/project",
   multer(multerConfig).single("image"),
-  uploadImage,
   constroller.addProject
 );
 
@@ -36,7 +35,6 @@ router.post("/edit/project/:id", constroller.editProject);
 router.post(
   "/edit/project/image/:id",
   multer(multerConfig).single("image"),
-  uploadImage,
   constroller.editProjectImage
 );
 

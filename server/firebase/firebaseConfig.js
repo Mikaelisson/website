@@ -16,61 +16,48 @@ admin.initializeApp({
 
 const bucket = admin.storage().bucket();
 
-const uploadImage = (req, res, next) => {
-  if (!req.file) return next();
-
-  const image = req.file;
-
-  const fileName = Date.now() + "." + image.originalname;
-
-  const file = bucket.file(`images/${fileName}`);
-
-  const stream = file.createWriteStream({
-    metadata: {
-      contentType: image.mimetype,
-    },
-  });
-
-  stream.on("error", (error) => {
-    console.log(error);
-  });
-
-  stream.on("finish", async () => {
-    await file.makePublic();
-
-    req.file.firebaseFileName = fileName;
-
-    req.file.firebaseUrl = `https://firebasestorage.googleapis.com/v0/b/${BUCKET}/o/images%2F${fileName}?alt=media`;
-    
-    next();
-  });
-
-  stream.end(image.buffer);
-};
-
-const deleteImage = async (req, res, next) => {
-  const file = bucket.file(`images/${req.file.firebaseFileName}`);
+const uploadImage = (image) => {
+  if (!image) return res.status(404).send(error);
 
   try {
-    await file.delete();
-    next();
+    const fileName = Date.now() + "." + image.originalname;
+
+    const file = bucket.file(`images/${fileName}`);
+
+    const stream = file.createWriteStream({
+      metadata: {
+        contentType: image.mimetype,
+      },
+    });
+
+    stream.on("error", (error) => {
+      console.log(error);
+    });
+
+    stream.on("finish", async () => {
+      await file.makePublic();
+    });
+
+    stream.end(image.buffer);
+
+    return {
+      firebaseFileName: fileName,
+      firebaseUrl: `https://firebasestorage.googleapis.com/v0/b/${BUCKET}/o/images%2F${fileName}?alt=media`,
+    };
   } catch (error) {
-    console.log(error);
-    next();
+    res.status(404).send(error);
   }
 };
 
-
-const deleteImageAfterEditing = async (image) => {
-  const file = bucket.file(`images/${image}`);
+const deleteImage = async (image) => {
+  const img = image.slice(83, -10);
+  const file = bucket.file(`images/${img}`);
 
   try {
     await file.delete();
-    console.log("Imagem deletada com sucesso!")
   } catch (error) {
-    console.log(error.message);
-    res.status(404).send(error)
+    res.status(404).send(error);
   }
 };
 
-module.exports = { uploadImage, deleteImage, deleteImageAfterEditing };
+module.exports = { uploadImage, deleteImage };

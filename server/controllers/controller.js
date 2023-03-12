@@ -1,7 +1,4 @@
-const {
-  deleteImage,
-  deleteImageAfterEditing,
-} = require("../firebase/firebaseConfig");
+const { deleteImage, uploadImage } = require("../firebase/firebaseConfig");
 const Project = require("../models/Project");
 const { addProjectValidate, editProjectValidate } = require("./validate");
 const User = require("../models/User");
@@ -23,34 +20,33 @@ const validateToken = async (email) => {
 };
 
 const addProject = async (req, res) => {
-  console.log(req.body)
   const { error } = addProjectValidate(req.body);
-  if (error) {
-    res.status(404).send(`Error JOI ==> ${error.message}`);
-    deleteImage(req);
-  }
-
-  const data = new Project({
-    title: req.body.title,
-    description: req.body.description,
-    comments: req.body.comments,
-    mobileSupport: req.body.mobileSupport,
-    image: req.file.firebaseUrl,
-    url: req.body.url,
-    repository: req.body.repository,
-  });
+  if (error) res.status(404).send(`Error JOI ==> ${error.message}`);
 
   try {
     await validateToken(req.body.email);
+
+    const image = await uploadImage(req.file);
+
+    const data = new Project({
+      title: req.body.title,
+      description: req.body.description,
+      comments: req.body.comments,
+      mobileSupport: req.body.mobileSupport,
+      image: image.firebaseUrl,
+      url: req.body.url,
+      repository: req.body.repository,
+    });
+
     await data.save();
+
     res.json({ message: "Documento adicionado com sucesso!" });
   } catch (error) {
-    res.status(404).send(error);
+    res.status(404).send(error.message);
   }
 };
 
 const editProject = async (req, res) => {
-  console.log(req.body)
   let id = req.params.id;
 
   const data = {
@@ -80,11 +76,11 @@ const editProjectImage = async (req, res) => {
   try {
     await validateToken(req.body.email);
 
+    const image = await uploadImage(req.file);
     const doc = await Project.findById(id);
-    
-    await deleteImageAfterEditing(doc.image.slice(83, -10))
 
-    await Project.findByIdAndUpdate(id, { image: req.file.firebaseUrl });
+    await deleteImage(doc.image);
+    await Project.findByIdAndUpdate(id, { image: image.firebaseUrl });
     res.json({ message: "Upload realizado com sucesso!" });
   } catch (error) {
     res.status(404).send(error);
@@ -99,6 +95,7 @@ const deleteProject = async (req, res) => {
     if (!project) res.status(404).send("Projeto não existe.");
 
     await validateToken(req.body.email);
+    await deleteImage(project.image);
     await Project.findByIdAndDelete(id);
     res.json({ message: "Exclusão realizada com sucesso!" });
   } catch (error) {
