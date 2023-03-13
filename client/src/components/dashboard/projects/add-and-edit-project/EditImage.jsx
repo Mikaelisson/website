@@ -23,7 +23,11 @@ const EditImage = (props) => {
     const doc = await data.json();
     console.log(doc);
     props.editImage();
-    props.consultProjects();
+    //added timeout to give time to upload the image
+    setTimeout(() => {
+      console.log("1s");
+      props.consultProjects();
+    }, 1000);
   };
 
   return (

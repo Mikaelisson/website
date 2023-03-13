@@ -16,7 +16,8 @@ const searchProject = async (req, res) => {
 const validateToken = async (email) => {
   const validate = await User.findOne({ email }, "-password");
   const token = jwt.verify(validate.token, process.env.TOKEN_SECRET);
-  return token;
+  if (!token) return res.status(404).send("Usuário não autenticado");
+  else return token;
 };
 
 const addProject = async (req, res) => {
@@ -75,11 +76,11 @@ const editProjectImage = async (req, res) => {
 
   try {
     await validateToken(req.body.email);
-
     const image = await uploadImage(req.file);
-    const doc = await Project.findById(id);
 
+    const doc = await Project.findById(id);
     await deleteImage(doc.image);
+
     await Project.findByIdAndUpdate(id, { image: image.firebaseUrl });
     res.json({ message: "Upload realizado com sucesso!" });
   } catch (error) {
@@ -109,4 +110,5 @@ module.exports = {
   editProject,
   deleteProject,
   editProjectImage,
+  validateToken,
 };

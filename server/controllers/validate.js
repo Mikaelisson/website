@@ -29,9 +29,10 @@ const editProjectValidate = (data) => {
 
 const addUserValidate = (data) => {
   const schema = Joi.object({
-    name: Joi.string().required(),
+    nameInput: Joi.string().required(),
+    emailInput: Joi.string().required(),
+    passwordInput: Joi.string().required(),
     email: Joi.string().required(),
-    password: Joi.string().required(),
   });
 
   return schema.validate(data);

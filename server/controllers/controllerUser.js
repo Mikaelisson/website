@@ -2,6 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { addUserValidate, editUserValidate } = require("./validate");
+const controller = require("./controller");
 
 const dashboard = async (req, res) => {
   try {
@@ -22,20 +23,24 @@ const addUser = async (req, res) => {
   const { error } = addUserValidate(req.body);
   if (error) res.status(404).send(`Error JOI ==> ${error.message}`);
 
-  const password = bcrypt.hashSync(req.body.password, 10);
+  const password = bcrypt.hashSync(req.body.passwordInput, 10);
 
   const data = new User({
-    name: req.body.name,
-    email: req.body.email,
+    name: req.body.nameInput,
+    email: req.body.emailInput,
     password,
     date: new Date(),
     lastChange: new Date(),
   });
 
   try {
-    const doc = await data.save();
-    console.log("Usuário cadastrado com sucesso!");
-    res.send(doc);
+    await controller.validateToken(req.body.email);
+
+    const verifyUserExist = await User.findOne({ email: req.body.emailInput });
+    if (verifyUserExist) res.status(404).send("Usuário ou senha inválidos");
+
+    await data.save();
+    res.json({ message: "Usuário cadastrado com sucesso!" });
   } catch (error) {
     res.status(404).send(error);
   }

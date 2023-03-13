@@ -6,7 +6,6 @@ const constrollerUsers = require("../controllers/controllerUser");
 const loginController = require("../controllers/loginController");
 const multer = require("multer");
 const multerConfig = require("../controllers/multerConfig");
-const { uploadImage } = require("../firebase/firebaseConfig");
 
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
@@ -38,6 +37,7 @@ router.post(
   constroller.editProjectImage
 );
 
+//delete project
 router.delete("/delete/project/:id", constroller.deleteProject);
 
 module.exports = router;
