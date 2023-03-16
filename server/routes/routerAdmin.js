@@ -10,6 +10,8 @@ const multerConfig = require("../controllers/multerConfig");
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
 
+router.get("/users", constrollerUsers.queryUsers);
+
 //routes auth
 router.post("/auth", loginController, auth, constrollerUsers.dashboard);
 router.post("/auth/token", constrollerUsers.validateToken);

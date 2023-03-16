@@ -19,6 +19,15 @@ const dashboard = async (req, res) => {
   }
 };
 
+const queryUsers = async (req, res) => {
+  try {
+    const doc = await User.find({}, ["name", "email"]);
+    res.json(doc);
+  } catch (error) {
+    res.status(404).send(error);
+  }
+};
+
 const addUser = async (req, res) => {
   const { error } = addUserValidate(req.body);
   if (error) res.status(404).send(`Error JOI ==> ${error.message}`);
@@ -53,16 +62,18 @@ const editUser = async (req, res) => {
   let id = req.params.id;
 
   const user = {
-    name: req.body.name,
-    email: req.body.email,
+    name: req.body.nameInput,
+    email: req.body.emailInput,
     lastChange: new Date(),
   };
 
   try {
+    await controller.validateToken(req.body.email);
+
     await User.findByIdAndUpdate(id, user);
-    const doc = await User.findById(id);
-    console.log("Usuário editado com sucesso!");
-    res.send(doc);
+    await User.findById(id);
+
+    res.json({ message: "Usuário editado com sucesso!" });
   } catch (error) {
     res.status(404).send(error);
   }
@@ -104,4 +115,5 @@ module.exports = {
   editUser,
   deleteUser,
   validateToken,
+  queryUsers,
 };

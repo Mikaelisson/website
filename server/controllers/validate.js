@@ -40,7 +40,8 @@ const addUserValidate = (data) => {
 
 const editUserValidate = (data) => {
   const schema = Joi.object({
-    name: Joi.string(),
+    nameInput: Joi.string(),
+    emailInput: Joi.string(),
     email: Joi.string(),
   });
 

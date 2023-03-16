@@ -111,3 +111,18 @@ export const List = styled.nav`
     }
   }
 `;
+
+export const Users = styled.div`
+  width: 100%;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 0;
+  }
+  p {
+    margin-right: 10px;
+    font-weight: 600;
+  }
+`;

@@ -107,17 +107,17 @@ const DashboardProjects = (props) => {
                   </LinkProject>
 
                   <ButtonProject
-                    buttonBgColor={"#bb0f0f"}
-                    onClick={() => deleteProject(element._id)}
-                  >
-                    <IoCloseSharp />
-                  </ButtonProject>
-
-                  <ButtonProject
                     buttonBgColor={"#8a8a8a"}
                     onClick={() => openEditProject(element)}
                   >
                     <AiFillEdit />
+                  </ButtonProject>
+
+                  <ButtonProject
+                    buttonBgColor={"#bb0f0f"}
+                    onClick={() => deleteProject(element._id)}
+                  >
+                    <IoCloseSharp />
                   </ButtonProject>
                 </ContainerButtons>
               </Project>

@@ -69,7 +69,7 @@ export const ImageProject = styled.div`
     padding: 5px;
   }
 
-  button svg{
+  button svg {
     width: 15px;
     height: 15px;
   }
@@ -195,8 +195,11 @@ export const LinkProject = styled.a`
 `;
 
 export const ButtonProject = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: ${(props) => props.widthElement};
-  height: 40px;
+  height: ${(props) => (props.widthElement ? props.widthElement : "40px")};
   cursor: pointer;
 
   color: #000;
@@ -213,7 +216,7 @@ export const ButtonProject = styled.button`
 
   border: transparent solid 2px;
   border-radius: 100%;
-  padding: 8px;
+  padding: ${(props) => (props.paddingElement ? props.paddingElement : "8px")};
 
   &:hover {
     ${(props) =>
