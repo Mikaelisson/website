@@ -8,8 +8,12 @@ import { FormLogin } from "../../admin/AdminStyled";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
 const UserPanel = (props) => {
-  const [nameInput, setNameInput] = useState("");
-  const [emailInput, setEmailInput] = useState("");
+  const [nameInput, setNameInput] = useState(
+    props.newUser ? "" : props.informationToEditUser.name
+  );
+  const [emailInput, setEmailInput] = useState(
+    props.newUser ? "" : props.informationToEditUser.email
+  );
   const [seePassword, setSeePassword] = useState(false);
   const [passwordInput, setPasswordInput] = useState("");
 
@@ -43,7 +47,6 @@ const UserPanel = (props) => {
           }}
         >
           <h1>{props.newUser ? "Adicionar Usuário" : "Editar Usuário"}</h1>
-
           <InputGroup title={nameInput}>
             <input
               type="text"
@@ -70,39 +73,48 @@ const UserPanel = (props) => {
             <label htmlFor="email">E-mail</label>
           </InputGroup>
 
-          <InputGroup title={passwordInput}>
-            <input
-              type={seePassword ? "text" : "password"}
-              name="password"
-              value={passwordInput}
-              onChange={(event) => {
-                setPasswordInput(event.target.value);
-              }}
-              required
-            />
+          {props.newUser && (
+            <InputGroup title={passwordInput}>
+              <input
+                type={seePassword ? "text" : "password"}
+                name="password"
+                value={passwordInput}
+                onChange={(event) => {
+                  setPasswordInput(event.target.value);
+                }}
+                required
+              />
 
-            <button
-              onClick={(event) => {
-                event.preventDefault();
-                setSeePassword(!seePassword);
-              }}
-            >
-              {seePassword ? (
-                <AiOutlineEyeInvisible title="Esconder senha" />
-              ) : (
-                <AiOutlineEye title="Mostrar senha" />
-              )}
-            </button>
-            <label htmlFor="password">Senha</label>
-          </InputGroup>
+              <button
+                onClick={(event) => {
+                  event.preventDefault();
+                  setSeePassword(!seePassword);
+                }}
+              >
+                {seePassword ? (
+                  <AiOutlineEyeInvisible title="Esconder senha" />
+                ) : (
+                  <AiOutlineEye title="Mostrar senha" />
+                )}
+              </button>
+              <label htmlFor="password">Senha</label>
+            </InputGroup>
+          )}
 
           <ButtonsForm>
-            <button type="button" onClick={() => props.onSetUserPanel(false)}>
+            <button
+              type="button"
+              onClick={() => {
+                props.onSetUserPanel(false);
+              }}
+            >
               Cancelar
             </button>
             <button
               onClick={() => {
-                registerUser();
+                props.newUser
+                  ? registerUser()
+                  : alert("Sem funções atribuídas");
               }}
             >
               Salvar

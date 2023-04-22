@@ -28,10 +28,7 @@ const DashboardMenu = (props) => {
   const [userList, setUserList] = useState(false);
   const [newUser, setNewUser] = useState(true);
   const [users, setUsers] = useState([]);
-
-  const onSetShowAddProject = () => {
-    setShowAddProject(!showAddProject);
-  };
+  const [informationToEditUser, setInformationToEditUser] = useState("");
 
   const onSetUserPanel = (param) => {
     setUserPanel(param);
@@ -39,6 +36,10 @@ const DashboardMenu = (props) => {
 
   const onSetUserList = (param) => {
     setUserList(param);
+  };
+
+  const onInformationToEditUser = (param) => {
+    setInformationToEditUser(param);
   };
 
   const usersAPI = async () => {
@@ -104,6 +105,7 @@ const DashboardMenu = (props) => {
                       onClick={() => {
                         usersAPI();
                         onSetUserList(true);
+                        setNewUser(false);
                         props.changeMenu();
                       }}
                     >
@@ -114,6 +116,7 @@ const DashboardMenu = (props) => {
                     <button
                       onClick={() => {
                         onSetUserPanel(true);
+                        setNewUser(true);
                         props.changeMenu();
                       }}
                     >
@@ -140,11 +143,19 @@ const DashboardMenu = (props) => {
         />
       )}
 
-      {userList && <UserList onSetUserList={onSetUserList} users={users} />}
+      {userList && (
+        <UserList
+          onSetUserList={onSetUserList}
+          users={users}
+          onInformationToEditUser={onInformationToEditUser}
+          onSetUserPanel={onSetUserPanel}
+        />
+      )}
 
       {userPanel && (
         <UserPanel
           newUser={newUser}
+          informationToEditUser={informationToEditUser}
           onSetUserPanel={onSetUserPanel}
           consultProjects={props.consultProjects}
           changeLoading={props.changeLoading}
