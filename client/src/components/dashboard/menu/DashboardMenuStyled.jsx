@@ -115,11 +115,13 @@ export const List = styled.nav`
 export const Users = styled.div`
   width: 100%;
 
-  div {
+  > div {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 4px 0;
+    padding: 8px;
+    margin: 5px 0;
+    box-shadow: #e1ac04 0 3px 20px -10px;
   }
   p {
     margin-right: 10px;

@@ -9,20 +9,17 @@ import {
   SidebarInformations,
   SidebarStyle,
 } from "../../sidebar/SidebarStyled";
-import { List, User, Users } from "./DashboardMenuStyled";
+import { List, User } from "./DashboardMenuStyled";
 
-import { IoCloseSharp, IoSettingsSharp } from "react-icons/io5";
-import { AiFillHome, AiFillFileAdd, AiFillEdit } from "react-icons/ai";
+import { IoSettingsSharp } from "react-icons/io5";
+import { AiFillHome, AiFillFileAdd } from "react-icons/ai";
 import { BiLogOutCircle } from "react-icons/bi";
 import { FaUserPlus } from "react-icons/fa";
 import UserPanel from "../users/Userpanel";
-import { Overlap } from "../projects/add-and-edit-project/AddOrEditProjectStyled";
-import { BorderEffect, ButtonsForm } from "../../admin/AdminStyled";
 
 //user list
 import { HiUsers } from "react-icons/hi";
-import { ContainerEditImage } from "../projects/add-and-edit-project/EditImageStyled";
-import { ButtonProject, ContainerButtons } from "../../projects/ProjectStyled";
+import UserList from "../users/UserList";
 
 const DashboardMenu = (props) => {
   const [showAddProject, setShowAddProject] = useState(false);
@@ -159,48 +156,3 @@ const DashboardMenu = (props) => {
 };
 
 export default DashboardMenu;
-
-const UserList = (props) => {
-  return (
-    <Overlap>
-      <BorderEffect>
-        <ContainerEditImage>
-          <h1>Lista de Usuários</h1>
-          <Users>
-            {props.users.map((user, index) => (
-              <>
-                <div key={index}>
-                  <p>{user.name}</p>
-                  <ContainerButtons>
-                    <ButtonProject
-                      widthElement={"20px"}
-                      paddingElement={"0"}
-                      buttonBgColor={"#8a8a8a"}
-                      onClick={() => {}}
-                    >
-                      <AiFillEdit style={{ width: "15px" }} />
-                    </ButtonProject>
-
-                    <ButtonProject
-                      widthElement={"20px"}
-                      paddingElement={"0"}
-                      buttonBgColor={"#bb0f0f"}
-                      onClick={() => {}}
-                    >
-                      <IoCloseSharp style={{ width: "15px" }} />
-                    </ButtonProject>
-                  </ContainerButtons>
-                </div>
-              </>
-            ))}
-          </Users>
-          <ButtonsForm>
-            <button type="button" onClick={() => props.onSetUserList(false)}>
-              Cancelar
-            </button>
-          </ButtonsForm>
-        </ContainerEditImage>
-      </BorderEffect>
-    </Overlap>
-  );
-};
