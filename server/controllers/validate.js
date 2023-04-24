@@ -8,7 +8,7 @@ const addProjectValidate = (data) => {
     mobileSupport: Joi.boolean().required(),
     url: Joi.string().required(),
     repository: Joi.string().required(),
-    email: Joi.string(),
+    email: Joi.string().required(),
   });
 
   return schema.validate(data);
@@ -42,7 +42,7 @@ const editUserValidate = (data) => {
   const schema = Joi.object({
     nameInput: Joi.string(),
     emailInput: Joi.string(),
-    email: Joi.string(),
+    email: Joi.string().required(),
   });
 
   return schema.validate(data);

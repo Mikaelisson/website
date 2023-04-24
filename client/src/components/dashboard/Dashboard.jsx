@@ -21,6 +21,10 @@ const Dashboard = (props) => {
     setShowLoading(!showLoading);
   };
 
+  const closeLoading = () => {
+    setShowLoading(false);
+  };
+
   const changeUploadImage = (param) => {
     setUploadImage(param);
   };
@@ -47,6 +51,7 @@ const Dashboard = (props) => {
             email={props.email}
             consultProjects={consultProjects}
             changeLoading={changeLoading}
+            closeLoading={closeLoading}
             showLoading={showLoading}
             uploadImage={uploadImage}
             changeUploadImage={changeUploadImage}

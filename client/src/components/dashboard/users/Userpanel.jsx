@@ -30,11 +30,24 @@ const UserPanel = (props) => {
         email: props.email,
       }),
     });
-    const doc = await data.json();
-    console.log(doc);
+    await data.json();
 
-    props.consultProjects();
-    props.onSetUserPanel(false);
+    props.closeLoading();
+    props.onSetShowUserPanel(false);
+  };
+
+  const editUser = async () => {
+    props.changeLoading();
+
+    await fetch(`/admin/edit/user/${props.informationToEditUser._id}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ nameInput, emailInput, email: props.email }),
+    });
+
+    props.usersAPI();
+    props.onSetShowUserPanel(false);
+    props.closeLoading();
   };
 
   return (
@@ -105,16 +118,14 @@ const UserPanel = (props) => {
             <button
               type="button"
               onClick={() => {
-                props.onSetUserPanel(false);
+                props.onSetShowUserPanel(false);
               }}
             >
               Cancelar
             </button>
             <button
               onClick={() => {
-                props.newUser
-                  ? registerUser()
-                  : alert("Sem funções atribuídas");
+                props.newUser ? registerUser() : editUser();
               }}
             >
               Salvar

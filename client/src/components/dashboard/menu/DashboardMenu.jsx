@@ -10,12 +10,12 @@ import {
   SidebarStyle,
 } from "../../sidebar/SidebarStyled";
 import { List, User } from "./DashboardMenuStyled";
+import UserPanel from "../users/UserPanel";
 
 import { IoSettingsSharp } from "react-icons/io5";
 import { AiFillHome, AiFillFileAdd } from "react-icons/ai";
 import { BiLogOutCircle } from "react-icons/bi";
 import { FaUserPlus } from "react-icons/fa";
-import UserPanel from "../users/Userpanel";
 
 //user list
 import { HiUsers } from "react-icons/hi";
@@ -24,14 +24,18 @@ import UserList from "../users/UserList";
 const DashboardMenu = (props) => {
   const [showAddProject, setShowAddProject] = useState(false);
   const [email, setEmail] = useState(props.email);
-  const [userPanel, setUserPanel] = useState(false);
+  const [showUserPanel, setShowUserPanel] = useState(false);
   const [userList, setUserList] = useState(false);
   const [newUser, setNewUser] = useState(true);
   const [users, setUsers] = useState([]);
   const [informationToEditUser, setInformationToEditUser] = useState("");
 
-  const onSetUserPanel = (param) => {
-    setUserPanel(param);
+  const onSetShowAddProject = () => {
+    setShowAddProject(!showAddProject);
+  };
+
+  const onSetShowUserPanel = (param) => {
+    setShowUserPanel(param);
   };
 
   const onSetUserList = (param) => {
@@ -115,7 +119,7 @@ const DashboardMenu = (props) => {
                   <li>
                     <button
                       onClick={() => {
-                        onSetUserPanel(true);
+                        onSetShowUserPanel(true);
                         setNewUser(true);
                         props.changeMenu();
                       }}
@@ -148,18 +152,20 @@ const DashboardMenu = (props) => {
           onSetUserList={onSetUserList}
           users={users}
           onInformationToEditUser={onInformationToEditUser}
-          onSetUserPanel={onSetUserPanel}
+          onSetShowUserPanel={onSetShowUserPanel}
         />
       )}
 
-      {userPanel && (
+      {showUserPanel && (
         <UserPanel
           newUser={newUser}
           informationToEditUser={informationToEditUser}
-          onSetUserPanel={onSetUserPanel}
+          onSetShowUserPanel={onSetShowUserPanel}
           consultProjects={props.consultProjects}
           changeLoading={props.changeLoading}
+          closeLoading={props.closeLoading}
           email={props.email}
+          usersAPI={usersAPI}
         />
       )}
     </>

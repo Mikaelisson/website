@@ -17,33 +17,35 @@ const UserList = (props) => {
           <ContainerEditImage>
             <h1>Lista de Usuários</h1>
             <Users>
-              {props.users.map((user, index) => (
-                <div key={index}>
-                  <p>{user.name}</p>
-                  <ContainerButtons>
-                    <ButtonProject
-                      widthElement={"20px"}
-                      paddingElement={"0"}
-                      buttonBgColor={"#8a8a8a"}
-                      onClick={() => {
-                        props.onSetUserPanel(true);
-                        props.onInformationToEditUser(user);
-                      }}
-                    >
-                      <AiFillEdit style={{ width: "15px" }} />
-                    </ButtonProject>
+              {props.users
+                .map((user, index) => (
+                  <div key={index}>
+                    <p>{user.name}</p>
+                    <ContainerButtons>
+                      <ButtonProject
+                        widthElement={"20px"}
+                        paddingElement={"0"}
+                        buttonBgColor={"#8a8a8a"}
+                        onClick={() => {
+                          props.onSetShowUserPanel(true);
+                          props.onInformationToEditUser(user);
+                        }}
+                      >
+                        <AiFillEdit style={{ width: "15px" }} />
+                      </ButtonProject>
 
-                    <ButtonProject
-                      widthElement={"20px"}
-                      paddingElement={"0"}
-                      buttonBgColor={"#bb0f0f"}
-                      onClick={() => {}}
-                    >
-                      <IoCloseSharp style={{ width: "15px" }} />
-                    </ButtonProject>
-                  </ContainerButtons>
-                </div>
-              ))}
+                      <ButtonProject
+                        widthElement={"20px"}
+                        paddingElement={"0"}
+                        buttonBgColor={"#bb0f0f"}
+                        onClick={() => {}}
+                      >
+                        <IoCloseSharp style={{ width: "15px" }} />
+                      </ButtonProject>
+                    </ContainerButtons>
+                  </div>
+                ))
+                .reverse()}
             </Users>
             <ButtonsForm>
               <button type="button" onClick={() => props.onSetUserList(false)}>

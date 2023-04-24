@@ -17,7 +17,10 @@ router.post("/auth", loginController, auth, constrollerUsers.dashboard);
 router.post("/auth/token", constrollerUsers.validateToken);
 
 //routes user
+//add user
 router.post("/add/user", constrollerUsers.addUser);
+
+//edit user
 router.post("/edit/user/:id", constrollerUsers.editUser);
 
 router.delete("/delete/user/:id", constrollerUsers.deleteUser);
