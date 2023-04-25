@@ -9,10 +9,10 @@ import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
 const UserPanel = (props) => {
   const [nameInput, setNameInput] = useState(
-    props.newUser ? "" : props.informationToEditUser.name
+    props.newUser ? "" : props.informationUser.name
   );
   const [emailInput, setEmailInput] = useState(
-    props.newUser ? "" : props.informationToEditUser.email
+    props.newUser ? "" : props.informationUser.email
   );
   const [seePassword, setSeePassword] = useState(false);
   const [passwordInput, setPasswordInput] = useState("");
@@ -39,7 +39,7 @@ const UserPanel = (props) => {
   const editUser = async () => {
     props.changeLoading();
 
-    await fetch(`/admin/edit/user/${props.informationToEditUser._id}`, {
+    await fetch(`/admin/edit/user/${props.informationUser._id}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ nameInput, emailInput, email: props.email }),
@@ -47,7 +47,6 @@ const UserPanel = (props) => {
 
     props.usersAPI();
     props.onSetShowUserPanel(false);
-    props.closeLoading();
   };
 
   return (

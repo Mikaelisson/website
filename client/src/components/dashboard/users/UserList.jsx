@@ -10,6 +10,16 @@ import { ContainerEditImage } from "../projects/add-and-edit-project/EditImageSt
 import { ButtonProject, ContainerButtons } from "../../projects/ProjectStyled";
 
 const UserList = (props) => {
+  const deleteUser = async (user) => {
+    props.changeLoading();
+    await fetch(`admin/delete/user/${user._id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: props.email }),
+    });
+    props.usersAPI();
+  };
+
   return (
     <>
       <Overlap>
@@ -28,7 +38,7 @@ const UserList = (props) => {
                         buttonBgColor={"#8a8a8a"}
                         onClick={() => {
                           props.onSetShowUserPanel(true);
-                          props.onInformationToEditUser(user);
+                          props.onSetInformationUser(user);
                         }}
                       >
                         <AiFillEdit style={{ width: "15px" }} />
@@ -38,7 +48,7 @@ const UserList = (props) => {
                         widthElement={"20px"}
                         paddingElement={"0"}
                         buttonBgColor={"#bb0f0f"}
-                        onClick={() => {}}
+                        onClick={() => deleteUser(user)}
                       >
                         <IoCloseSharp style={{ width: "15px" }} />
                       </ButtonProject>

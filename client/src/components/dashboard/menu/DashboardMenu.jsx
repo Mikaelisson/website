@@ -28,7 +28,7 @@ const DashboardMenu = (props) => {
   const [userList, setUserList] = useState(false);
   const [newUser, setNewUser] = useState(true);
   const [users, setUsers] = useState([]);
-  const [informationToEditUser, setInformationToEditUser] = useState("");
+  const [informationUser, setInformationUser] = useState("");
 
   const onSetShowAddProject = () => {
     setShowAddProject(!showAddProject);
@@ -42,14 +42,15 @@ const DashboardMenu = (props) => {
     setUserList(param);
   };
 
-  const onInformationToEditUser = (param) => {
-    setInformationToEditUser(param);
+  const onSetInformationUser = (param) => {
+    setInformationUser(param);
   };
 
   const usersAPI = async () => {
     const data = await fetch("/admin/users");
     const users = await data.json();
     setUsers(users);
+    props.closeLoading();
   };
 
   return (
@@ -107,6 +108,7 @@ const DashboardMenu = (props) => {
                   <li>
                     <button
                       onClick={() => {
+                        props.changeLoading();
                         usersAPI();
                         onSetUserList(true);
                         setNewUser(false);
@@ -151,15 +153,19 @@ const DashboardMenu = (props) => {
         <UserList
           onSetUserList={onSetUserList}
           users={users}
-          onInformationToEditUser={onInformationToEditUser}
+          email={props.email}
+          onSetInformationUser={onSetInformationUser}
           onSetShowUserPanel={onSetShowUserPanel}
+          usersAPI={usersAPI}
+          changeLoading={props.changeLoading}
+          closeLoading={props.closeLoading}
         />
       )}
 
       {showUserPanel && (
         <UserPanel
           newUser={newUser}
-          informationToEditUser={informationToEditUser}
+          informationUser={informationUser}
           onSetShowUserPanel={onSetShowUserPanel}
           consultProjects={props.consultProjects}
           changeLoading={props.changeLoading}

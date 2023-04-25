@@ -83,6 +83,7 @@ const deleteUser = async (req, res) => {
   let id = req.params.id;
 
   try {
+    await controller.validateToken(req.body.email);
     const doc = await User.findByIdAndDelete(id);
     console.log("Usuário deletado com sucesso!");
     res.send(doc);
