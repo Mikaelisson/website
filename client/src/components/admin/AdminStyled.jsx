@@ -6,6 +6,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   color: #e1ac04;
+  padding: 10px;
 `;
 
 export const BorderEffect = styled.div`
@@ -54,6 +55,12 @@ export const FormLogin = styled.form`
 
   h1 {
     margin-bottom: 20px;
+  }
+
+  @media screen and (max-width: 320px) {
+    h1 {
+      font-size: 26px;
+    }
   }
 `;
 

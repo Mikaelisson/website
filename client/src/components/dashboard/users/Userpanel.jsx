@@ -50,7 +50,7 @@ const UserPanel = (props) => {
   };
 
   return (
-    <Overlap>
+    <Overlap onClick={() => props.onSetShowUserPanel(false)}>
       <BorderEffect>
         <FormLogin
           id="formUser"

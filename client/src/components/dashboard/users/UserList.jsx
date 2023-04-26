@@ -22,7 +22,7 @@ const UserList = (props) => {
 
   return (
     <>
-      <Overlap>
+      <Overlap onClick={() => props.onSetUserList(false)}>
         <BorderEffect>
           <ContainerEditImage>
             <h1>Lista de Usuários</h1>

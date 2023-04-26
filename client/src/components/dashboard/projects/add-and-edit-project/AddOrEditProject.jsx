@@ -99,7 +99,7 @@ const AddOrEditProject = (props) => {
   };
 
   return (
-    <Overlap>
+    <Overlap onClick={() => props.showAddOrEditProject()}>
       <BorderEffect>
         <FormLogin
           id="formProject"

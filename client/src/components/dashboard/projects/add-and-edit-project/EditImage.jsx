@@ -31,7 +31,7 @@ const EditImage = (props) => {
   };
 
   return (
-    <Overlap>
+    <Overlap onClick={() => props.editImage()}>
       <BorderEffect>
         <ContainerEditImage>
           <h1>Editar Imagem</h1>

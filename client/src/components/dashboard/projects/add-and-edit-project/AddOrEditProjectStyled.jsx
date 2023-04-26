@@ -10,6 +10,7 @@ export const Overlap = styled.div`
 
   width: 100%;
   height: 100vh;
+  padding: 10px;
 
   display: flex;
   flex-direction: column;
@@ -17,7 +18,7 @@ export const Overlap = styled.div`
   align-items: center;
   z-index: 1;
 
-  form{
+  form {
     display: flex;
     flex-direction: column;
   }
