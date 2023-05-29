@@ -14,11 +14,11 @@ module.exports = async (req, res, next) => {
   try {
     //search user
     const doc = await User.findOne({ email: user.email });
-    if (!doc) res.status(400).send(errorMessages.invalidUser);
+    if (!doc) res.status(400).json(errorMessages.invalidUser);
 
     //check password
     const validatePassword = bcrypt.compareSync(user.password, doc.password);
-    if (!validatePassword) res.status(400).send(errorMessages.invalidUser);
+    if (!validatePassword) res.status(400).json(errorMessages.invalidUser);
 
     //token creation
     const token = jwt.sign({ _id: doc.id }, process.env.TOKEN_SECRET, {

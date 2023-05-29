@@ -12,15 +12,6 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 app.use("/api", router);
 app.use("/admin", routerAdmin);
 
-const sess = {
-  secret: "sqbsyv2yb323un",
-  cookie: {},
-};
-
-if (process.env.NODE_ENV != "development") {
-  app.set("trust proxy", 1); // trust first proxy
-  sess.cookie.secure = true; // serve secure cookies
-}
 
 if (process.env.NODE_ENV != "development") {
   app.use(express.static(path.join(__dirname, "../client/dist/index.html")));

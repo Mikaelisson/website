@@ -7,9 +7,9 @@ const jwt = require("jsonwebtoken");
 const searchProject = async (req, res) => {
   try {
     const doc = await Project.find({});
-    res.send(doc);
+    res.json(doc);
   } catch (error) {
-    res.status(404).send(error);
+    res.status(404).json(error);
   }
 };
 

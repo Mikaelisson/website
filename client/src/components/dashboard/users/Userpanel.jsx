@@ -50,7 +50,13 @@ const UserPanel = (props) => {
   };
 
   return (
-    <Overlap onClick={() => props.onSetShowUserPanel(false)}>
+    <Overlap
+      id="overlap"
+      onClick={(e) => {
+        const id = e.target.id;
+        if (id === "overlap") props.onSetShowUserPanel(false);
+      }}
+    >
       <BorderEffect>
         <FormLogin
           id="formUser"
@@ -63,6 +69,7 @@ const UserPanel = (props) => {
             <input
               type="text"
               name="name"
+              id="name"
               value={nameInput}
               onChange={(event) => {
                 setNameInput(event.target.value);
@@ -76,6 +83,7 @@ const UserPanel = (props) => {
             <input
               type="text"
               name="email"
+              id="email"
               value={emailInput}
               onChange={(event) => {
                 setEmailInput(event.target.value);
@@ -90,6 +98,7 @@ const UserPanel = (props) => {
               <input
                 type={seePassword ? "text" : "password"}
                 name="password"
+                id="password"
                 value={passwordInput}
                 onChange={(event) => {
                   setPasswordInput(event.target.value);

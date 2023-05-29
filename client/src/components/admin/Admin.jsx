@@ -55,6 +55,7 @@ const Admin = () => {
               <input
                 type="email"
                 name="email"
+                id="email"
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
@@ -68,6 +69,7 @@ const Admin = () => {
               <input
                 type={seePassword ? "text" : "password"}
                 name="password"
+                id="password"
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}

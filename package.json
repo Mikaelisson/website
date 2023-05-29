@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "server/app.js",
   "license": "MIT",
-  "scripts": {
+  "scripts": {    
     "start": "node server/app.js",
+    "preinstall": "cd server && yarn",
+    "postinstall": "cd client && yarn",
     "dev": "concurrently \"nodemon server/app.js\" \"cd client && yarn dev\""
   },
   "dependencies": {

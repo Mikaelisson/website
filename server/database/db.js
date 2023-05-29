@@ -4,7 +4,7 @@ var MONGODB_CONNECT;
 
 if (process.env.NODE_ENV !== "development")
   MONGODB_CONNECT = process.env.MONGODB_CONNECT;
-else MONGODB_CONNECT = "mongodb://localhost:27017/portfolio";
+else MONGODB_CONNECT = "mongodb://127.0.0.1:27017/portfolio";
 
 mongoose.connect(MONGODB_CONNECT);
 

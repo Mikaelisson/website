@@ -25,13 +25,18 @@ const EditImage = (props) => {
     props.editImage();
     //added timeout to give time to upload the image
     setTimeout(() => {
-      console.log("1s");
       props.consultProjects();
     }, 1000);
   };
 
   return (
-    <Overlap onClick={() => props.editImage()}>
+    <Overlap
+      id="overlap"
+      onClick={(e) => {
+        const id = e.target.id;
+        if (id === "overlap") props.editImage();
+      }}
+    >
       <BorderEffect>
         <ContainerEditImage>
           <h1>Editar Imagem</h1>

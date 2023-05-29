@@ -99,8 +99,14 @@ const AddOrEditProject = (props) => {
   };
 
   return (
-    <Overlap onClick={() => props.showAddOrEditProject()}>
-      <BorderEffect>
+    <Overlap
+      id="overlap"
+      onClick={(e) => {
+        const id = e.target.id;
+        if (id === "overlap") props.showAddOrEditProject();
+      }}
+    >
+      <BorderEffect className="borderEffect">
         <FormLogin
           id="formProject"
           onSubmit={(event) => {
@@ -114,6 +120,7 @@ const AddOrEditProject = (props) => {
             <input
               type="text"
               name="title"
+              id="title"
               value={inputTitle}
               onChange={(event) => {
                 saveValue(event.target.value, setInputTitle);
@@ -127,6 +134,7 @@ const AddOrEditProject = (props) => {
             <input
               type="text"
               name="description"
+              id="description"
               value={inputDescription}
               onChange={(event) => {
                 saveValue(event.target.value, setInputDescription);
@@ -140,6 +148,7 @@ const AddOrEditProject = (props) => {
             <input
               type="text"
               name="comments"
+              id="comments"
               value={inputComments}
               onChange={(event) => {
                 saveValue(event.target.value, setInputComments);
@@ -153,6 +162,7 @@ const AddOrEditProject = (props) => {
             <input
               type="text"
               name="url"
+              id="url"
               value={inputUrl}
               onChange={(event) => {
                 saveValue(event.target.value, setInputUrl);
@@ -166,6 +176,7 @@ const AddOrEditProject = (props) => {
             <input
               type="text"
               name="repository"
+              id="repository"
               value={inputRepository}
               onChange={(event) => {
                 saveValue(event.target.value, setInputRepository);

@@ -24,7 +24,7 @@ const queryUsers = async (req, res) => {
     const doc = await User.find({}, ["name", "email"]);
     res.json(doc);
   } catch (error) {
-    res.status(404).send(error);
+    res.status(404).json(error);
   }
 };
 
