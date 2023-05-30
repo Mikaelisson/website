@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 var MONGODB_CONNECT;
 
-if (process.env.NODE_ENV !== "development")
+if (process.env.NODE_ENV != "development")
   MONGODB_CONNECT = process.env.MONGODB_CONNECT;
 else MONGODB_CONNECT = "mongodb://127.0.0.1:27017/portfolio";
 
