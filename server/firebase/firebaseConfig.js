@@ -4,7 +4,7 @@ const BUCKET = "portfolio-278b8.appspot.com";
 var serviceAccount;
 
 if (process.env.NODE_ENV != "development") {
-  serviceAccount = require("./etc/secrets/firebase-key.json");
+  serviceAccount = require("../../firebase-key.json");
 } else {
   serviceAccount = require("./firebase-key.json");
 }
