@@ -10,16 +10,16 @@ import {
   SidebarStyle,
 } from "../../sidebar/SidebarStyled";
 import { List, User } from "./DashboardMenuStyled";
-import UserPanel from "../users/UserPanel";
+import UserPanel from "../users/UserPanelControl";
+
+//user list
+import { HiUsers } from "react-icons/hi";
+import UserList from "../users/UserList";
 
 import { IoSettingsSharp } from "react-icons/io5";
 import { AiFillHome, AiFillFileAdd } from "react-icons/ai";
 import { BiLogOutCircle } from "react-icons/bi";
 import { FaUserPlus } from "react-icons/fa";
-
-//user list
-import { HiUsers } from "react-icons/hi";
-import UserList from "../users/UserList";
 
 const DashboardMenu = (props) => {
   const [showAddProject, setShowAddProject] = useState(false);

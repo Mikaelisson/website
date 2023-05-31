@@ -1,6 +1,6 @@
 import Admin from "../admin/Admin";
 import { RouteProvider } from "./contextRoute";
-import PrivateRoute from "./Private";
+import PrivateRoute from "./PrivateRoute";
 
 const ContainerContext = () => {
   return (
