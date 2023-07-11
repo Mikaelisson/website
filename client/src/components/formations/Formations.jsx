@@ -9,7 +9,7 @@ const Formations = () => {
       course: "Tecnólogo em Análise e Desenvolvimento de Sistemas",
       stack: "",
       institution: "Universidade Nove de Julho",
-      conclusion: "Conclusão: 07/2023",
+      conclusion: "Concluído em: 07/2023",
     },
     {
       name: "Complementar",
