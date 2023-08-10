@@ -1,3 +1,4 @@
+require("dotenv").config();
 var admin = require("firebase-admin");
 
 const BUCKET = "portfolio-278b8.appspot.com";
