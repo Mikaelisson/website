@@ -1,4 +1,3 @@
-require("dotenv").config();
 var admin = require("firebase-admin");
 
 const BUCKET = "portfolio-278b8.appspot.com";
@@ -17,6 +16,7 @@ if (process.env.NODE_ENV != "development") {
     token_uri: process.env.token_uri,
     auth_provider_x509_cert_url: process.env.auth_provider_x509_cert_url,
     client_x509_cert_url: process.env.client_x509_cert_url,
+    universe_domain: process.env.universe_domain,
   };
 } else {
   //localhost
