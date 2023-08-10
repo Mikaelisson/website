@@ -5,7 +5,7 @@ var serviceAccount;
 
 if (process.env.NODE_ENV != "development") {
   //deploy
-  const { privateKey } = JSON.parse(process.env.PRIVATE_KEY_ID);
+  const { privateKey } = JSON.parse(process.env.PRIVATE_KEY);
 
   serviceAccount = {
     type: process.env.type,
